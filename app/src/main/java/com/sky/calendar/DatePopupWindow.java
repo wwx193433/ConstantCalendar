@@ -1,6 +1,8 @@
 package com.sky.calendar;
 
 import android.content.Context;
+import android.os.Build;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -249,7 +251,7 @@ public class DatePopupWindow extends PopupWindow implements android.view.View.On
         ArrayList<String> list;
 
         protected CalendarTextAdapter(Context context, ArrayList<String> list, int currentItem) {
-            super(context, R.layout.item_birth_year, NO_RESOURCE, currentItem, MAXTEXTSIZE, MINTEXTSIZE);
+            super(context, R.layout.wheel_date_box, NO_RESOURCE, currentItem, MAXTEXTSIZE, MINTEXTSIZE);
             this.list = list;
             setItemTextResource(R.id.tempValue);
         }
@@ -330,6 +332,17 @@ public class DatePopupWindow extends PopupWindow implements android.view.View.On
      */
     public interface DateSelectInterface{
         public void onDateSelectedCallBack(Date date);
+    }
+
+    @Override
+    public void showAsDropDown(View anchor) {
+        if(Build.VERSION.SDK_INT < 24){
+            super.showAtLocation(anchor, 0, 0, Gravity.END);
+        }else{
+            super.setFocusable(true);
+            //    在某个控件下方弹出
+            super.showAsDropDown(anchor);
+        }
     }
 
 }

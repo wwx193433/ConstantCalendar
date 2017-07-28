@@ -2,10 +2,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="52dp"
-    android:padding="3dp"
     android:background="#F88654"
     android:gravity="center_vertical"
-    >
+    android:padding="3dp">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -22,24 +21,24 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginLeft="10dp"
-            android:orientation="vertical"
             android:gravity="center_vertical"
+            android:orientation="vertical"
             android:padding="2dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:textColor="#fefefe"
                 android:text="西安"
+                android:textColor="#fefefe"
                 android:textSize="14sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#fefefe"
                 android:gravity="center"
                 android:text="21-31℃"
+                android:textColor="#fefefe"
                 android:textSize="14sp" />
         </LinearLayout>
     </LinearLayout>
@@ -47,9 +46,9 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
         android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:layout_alignParentRight="true">
+        android:paddingRight="10dp">
 
         <ImageView
             android:layout_width="wrap_content"
@@ -62,32 +61,45 @@
         android:id="@+id/layout_date"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="true"
+        android:paddingLeft="20dp"
         android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/solar_text"
+        <LinearLayout
+            android:id="@+id/id_dt_tv"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="2017.07.12"
-            android:textColor="#ffffff"
-            android:textSize="20sp" />
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/lunar_text"
+            <TextView
+                android:id="@+id/solar_text"
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:layout_weight="1"
+                android:gravity="bottom"
+                android:text="2017.07.12"
+                android:textColor="#ffffff"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/lunar_text"
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:layout_weight="1"
+                android:gravity="top"
+                android:text="六月十九 星期三"
+                android:textColor="#efefef"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="六月十九 星期三"
-            android:textColor="#efefef"
-            android:textSize="14sp" />
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@+id/id_dt_tv"
+            android:src="@drawable/arrow_down" />
     </LinearLayout>
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="2dp"
-        android:layout_toRightOf="@+id/layout_date"
-        android:src="@drawable/arrow_down" />
 
 </RelativeLayout>

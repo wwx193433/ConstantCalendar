@@ -88,9 +88,9 @@ public class CalendarFragment extends Fragment {
                 //设置阳历天数
                 String solarDay = String.valueOf(cal.get(Calendar.DAY_OF_MONTH));
                 LinearLayout day = (LinearLayout)((LinearLayout) row.getChildAt(k)).getChildAt(0);
-                ViewGroup.LayoutParams lpp = day.getLayoutParams();
-                lpp.width = lpp.height;
-                day.setLayoutParams(lpp);
+                ViewGroup.LayoutParams dayParams = day.getLayoutParams();
+                dayParams.width = dayParams.height;
+                day.setLayoutParams(dayParams);
                 ((TextView)day.getChildAt(0)).setText(solarDay);
 
                 //设置阳历日期

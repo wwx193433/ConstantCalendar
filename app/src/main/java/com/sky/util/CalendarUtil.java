@@ -1,7 +1,5 @@
 package com.sky.util;
 
-import android.util.Log;
-
 import com.sky.calendar.DayInfo;
 import com.sky.calendar.LunarCalendar;
 
@@ -70,9 +68,7 @@ public class CalendarUtil {
     }
 
     public String getLunarAndWeek(Date date) {
-        Log.i("tag", "----------------------------date:"+sdf.format(date));
         DayInfo dayInfo = lunarCalendar.solarToLunar(date);
-        Log.i("tag", "----------------------------dayInfo:"+dayInfo.toString());
         return dayInfo.getLunarChinaMonth() + dayInfo.getLunarChinaDay() + " " + getWeekDay(date) ;
     }
 

@@ -3,7 +3,6 @@ package com.sky.constantcalendar;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
-import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -33,12 +32,17 @@ public class MainActivity extends FragmentActivity {
     private CalendarUtil calendarUtil;
     private TextView solar_text, lunar_text;
     private LinearLayout layout_date;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //去顶部菜单
+        //取消标题
         requestWindowFeature(Window.FEATURE_NO_TITLE);
+//        //取消状态栏
+//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+//                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         setContentView(R.layout.main);
 
         //初始化组件
@@ -82,7 +86,7 @@ public class MainActivity extends FragmentActivity {
 
                 //出现在布局底端
                 LinearLayout mainView = (LinearLayout) findViewById(R.id.main);
-                pw.showAtLocation(mainView, 0, 0, Gravity.END);
+                pw.showAsDropDown(mainView);
                 backgroundAlpha(0.4f);
                 pw.setOnDismissListener(new PopupWindow.OnDismissListener() {
                     @Override
@@ -103,10 +107,10 @@ public class MainActivity extends FragmentActivity {
     }
 
     private void showToast(String s) {
-        Toast.makeText(MainActivity.this, "--------"+s, Toast.LENGTH_SHORT).show();
+        Toast.makeText(MainActivity.this, "--------" + s, Toast.LENGTH_SHORT).show();
     }
 
-    public void setPageListener(final ViewPager viewPager) {
+    public void setPageListener(final MyPager viewPager) {
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -121,13 +125,13 @@ public class MainActivity extends FragmentActivity {
                     current.set(Calendar.DAY_OF_MONTH, 1);
                 }
 
-                LinearLayout container = (LinearLayout) viewPager.findViewWithTag("page"+position);
+                LinearLayout container = (LinearLayout) viewPager.findViewWithTag("page" + position);
                 for (int i = 0; i < container.getChildCount(); i++) {
                     LinearLayout row = (LinearLayout) container.getChildAt(i);
-                    for(int j = 0;j<row.getChildCount();j++){
-                        LinearLayout day = (LinearLayout)((LinearLayout) row.getChildAt(j)).getChildAt(0);
-                        String solarDate = ((TextView)day.getChildAt(1)).getText().toString();
-                        if(solarDate.equals(sdf.format(new Date()))){
+                    for (int j = 0; j < row.getChildCount(); j++) {
+                        LinearLayout day = (LinearLayout) ((LinearLayout) row.getChildAt(j)).getChildAt(0);
+                        String solarDate = ((TextView) day.getChildAt(1)).getText().toString();
+                        if (solarDate.equals(sdf.format(new Date()))) {
                             continue;
                         }
                         if (solarDate.equals(sdf.format(current.getTime()))) {
@@ -150,14 +154,14 @@ public class MainActivity extends FragmentActivity {
     }
 
     private void backgroundAlpha(float f) {
-        WindowManager.LayoutParams lp =getWindow().getAttributes();
+        WindowManager.LayoutParams lp = getWindow().getAttributes();
         lp.alpha = f;
         getWindow().setAttributes(lp);
     }
 
-    public void setCalendar(Date date){
+    public void setCalendar(Date date) {
         ViewPager viewPager = (ViewPager) this.findViewById(R.id.viewPager);
-        int position = calendarUtil.getMonthSpace(date)+Constant.pagecount/2;
+        int position = calendarUtil.getMonthSpace(date) + Constant.pagecount / 2;
         viewPager.setCurrentItem(position, true);
 
         //设置阳历日期
@@ -170,13 +174,13 @@ public class MainActivity extends FragmentActivity {
         lunar_text.setText(lunarAndWeek);
 
 
-        LinearLayout container = (LinearLayout) viewPager.findViewWithTag("page"+position);
+        LinearLayout container = (LinearLayout) viewPager.findViewWithTag("page" + position);
         for (int i = 0; i < container.getChildCount(); i++) {
             LinearLayout row = (LinearLayout) container.getChildAt(i);
-            for(int j = 0;j<row.getChildCount();j++){
-                LinearLayout day = (LinearLayout)((LinearLayout) row.getChildAt(j)).getChildAt(0);
-                String solarDate = ((TextView)day.getChildAt(1)).getText().toString();
-                if(solarDate.equals(sdf.format(new Date()))){
+            for (int j = 0; j < row.getChildCount(); j++) {
+                LinearLayout day = (LinearLayout) ((LinearLayout) row.getChildAt(j)).getChildAt(0);
+                String solarDate = ((TextView) day.getChildAt(1)).getText().toString();
+                if (solarDate.equals(sdf.format(new Date()))) {
                     continue;
                 }
                 if (solarDate.equals(sdf.format(date))) {

@@ -10,6 +10,9 @@
 
     <include layout="@layout/calendar"/>
 
+    <include layout="@layout/divine"/>
+
+
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
