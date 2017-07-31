@@ -3,6 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/special"
+    android:fitsSystemWindows="true"
     android:id="@+id/main"
     tools:context="com.study.paramsend.MainActivity">
 
@@ -12,12 +14,16 @@
 
     <include layout="@layout/divine"/>
 
-
-    <Button
+    <LinearLayout
+        android:background="#ffffff"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="测试"
-        />
+        android:layout_height="match_parent">
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="测试"
+            />
+    </LinearLayout>
 
 
 </LinearLayout>

@@ -68,12 +68,28 @@ public class LunarCalendar {
             "娄金狗", "胃土彘", "昴日鸡", "毕月乌", "觜火猴", "参水猿", "井木犴", "鬼金羊", "柳土獐", "星日马", "张月鹿", "翼火蛇", "轸水蚓"};
 
     // 农历相关数据
-    private static String ganStr = "甲乙丙丁戊己庚辛壬癸";
-    private static String zhiStr = "子丑寅卯辰巳午未申酉戌亥";
-    private static String animalStr = "鼠牛虎兔龙蛇马羊猴鸡狗猪";
-    private static String nStr1 = "日一二三四五六七八九";
+    private static String tiangan []={"癸","甲","乙","丙","丁","戊","己","庚","辛","壬"};
+    private static String dizhi[] = {"亥","子","丑","寅","卯","辰","巳","午","未","申","酉","戌"};
+    private static String shengxiao[] = {"猪","鼠","牛","虎","兔","龙","蛇","马","羊","猴","鸡","狗"};
     private static String[] monthString = {"出错", "正月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月",
             "腊月"};
+
+    /**
+     * 计算天干地支
+     */
+    public String getChineseEra(int year){
+        int i=(year-3)%10;
+        int j=(year-3)%12;
+        return tiangan[i]+dizhi[j];
+    }
+
+    /**
+     * 计算生肖
+     */
+    public String getZodiac(int year){
+        int n=(year-3)%12;
+        return shengxiao[n];
+    }
 
     /**
      * 计算阴历 {@code year}年闰哪个月 1-12 , 没闰传回 0

@@ -3,6 +3,8 @@ package com.sky.constantcalendar;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -14,7 +16,6 @@ import android.widget.Toast;
 import com.sky.adapter.CalendarPagerAdapter;
 import com.sky.calendar.DatePopupWindow;
 import com.sky.calendar.LunarCalendar;
-import com.sky.plug.widget.MyPager;
 import com.sky.util.CalendarUtil;
 import com.sky.util.Constant;
 
@@ -26,11 +27,12 @@ import java.util.Date;
 public class MainActivity extends FragmentActivity {
 
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-    private MyPager viewPager;
+    SimpleDateFormat ymdformat = new SimpleDateFormat("yyyy.MM.dd");
+    private ViewPager viewPager;
     private CalendarPagerAdapter calendarPagerAdapter;
     private LunarCalendar lunarCalendar;
     private CalendarUtil calendarUtil;
-    private TextView solar_text, lunar_text;
+    private TextView solar_text, lunar_text, dv_solar_date, dv_week;
     private LinearLayout layout_date;
 
     @Override
@@ -59,23 +61,36 @@ public class MainActivity extends FragmentActivity {
      * 初始化组件
      */
     private void init() {
-        viewPager = (MyPager) this.findViewById(R.id.viewPager);
-        solar_text = (TextView) this.findViewById(R.id.solar_text);
-        lunar_text = (TextView) this.findViewById(R.id.lunar_text);
         lunarCalendar = new LunarCalendar();
         calendarUtil = new CalendarUtil();
+
+        viewPager = (ViewPager) this.findViewById(R.id.viewPager);
+
+        solar_text = (TextView) this.findViewById(R.id.solar_text);
+        lunar_text = (TextView) this.findViewById(R.id.lunar_text);
+        dv_solar_date = (TextView) this.findViewById(R.id.dv_solar_date);
+        dv_week = (TextView) this.findViewById(R.id.dv_week);
+
+        //设置阳历日期
         solar_text.setText(sdf.format(new Date()));
-        String lunarAndWeek = calendarUtil.getLunarAndWeek(new Date());
-        lunar_text.setText(lunarAndWeek);
+
+        //设置阴历日期
+        String lunarDate = calendarUtil.getLunarDate(new Date());
+        String week = calendarUtil.getWeekDay(new Date());
+        lunar_text.setText(lunarDate+" "+week);
+
+        //设置天干地支
+        Calendar calendar = Calendar.getInstance();
+        String chineseYear = calendarUtil.getChineseYear(calendar.get(Calendar.YEAR));
+        dv_solar_date.setText(chineseYear+lunarDate);
+        dv_week.setText(week);
 
         layout_date = (LinearLayout) this.findViewById(R.id.layout_date);
-
         layout_date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
                 String solarText = solar_text.getText().toString();
-                SimpleDateFormat ymdformat = new SimpleDateFormat("yyyy.MM.dd");
                 Date solarDate = new Date();
                 try {
                     solarDate = ymdformat.parse(solarText);
@@ -106,11 +121,7 @@ public class MainActivity extends FragmentActivity {
         });
     }
 
-    private void showToast(String s) {
-        Toast.makeText(MainActivity.this, "--------" + s, Toast.LENGTH_SHORT).show();
-    }
-
-    public void setPageListener(final MyPager viewPager) {
+    public void setPageListener(final ViewPager viewPager) {
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -143,8 +154,12 @@ public class MainActivity extends FragmentActivity {
                 }
 
                 solar_text.setText(sdf.format(current.getTime()));
-                String lunarAndWeek = calendarUtil.getLunarAndWeek(current.getTime());
-                lunar_text.setText(lunarAndWeek);
+                String lunarDate = calendarUtil.getLunarDate(current.getTime());
+                String week = calendarUtil.getWeekDay(current.getTime());
+                String chineseYear = calendarUtil.getChineseYear(current.get(Calendar.YEAR));
+                lunar_text.setText(lunarDate+" "+week);
+                dv_solar_date.setText(chineseYear+lunarDate);
+                dv_week.setText(week);
             }
 
             @Override
@@ -165,13 +180,19 @@ public class MainActivity extends FragmentActivity {
         viewPager.setCurrentItem(position, true);
 
         //设置阳历日期
-        TextView solar_text = (TextView) this.findViewById(R.id.solar_text);
         solar_text.setText(sdf.format(date));
 
         //设置阴历日期
-        TextView lunar_text = (TextView) this.findViewById(R.id.lunar_text);
-        String lunarAndWeek = calendarUtil.getLunarAndWeek(date);
-        lunar_text.setText(lunarAndWeek);
+        String lunarDate = calendarUtil.getLunarDate(date);
+        String week = calendarUtil.getWeekDay(date);
+        lunar_text.setText(lunarDate+" "+week);
+
+        //设置天干地支
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        String chineseYear = calendarUtil.getChineseYear(calendar.get(Calendar.YEAR));
+        dv_solar_date.setText(chineseYear+lunarDate);
+        dv_week.setText(week);
 
 
         LinearLayout container = (LinearLayout) viewPager.findViewWithTag("page" + position);
@@ -189,6 +210,26 @@ public class MainActivity extends FragmentActivity {
                     day.setBackgroundResource(0);
                 }
             }
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    /**
+     * 菜单定义
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()){
+            case R.id.note:
+                Toast.makeText(MainActivity.this, "测试", Toast.LENGTH_SHORT).show();
+                return true;
+            default:
+                return false;
         }
     }
 }

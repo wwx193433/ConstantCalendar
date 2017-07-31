@@ -17,4 +17,6 @@ public class Constant {
 
     //完成
     public static final int IS_FINISH = 1;
+
+    public static final String LUNARNAME = "农历";
 }

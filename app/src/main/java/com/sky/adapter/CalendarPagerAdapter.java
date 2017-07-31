@@ -14,7 +14,6 @@ public class CalendarPagerAdapter extends FragmentPagerAdapter {
     public CalendarPagerAdapter(FragmentManager fm) {
         super(fm);
     }
-
     @Override
     public Fragment getItem(int position) {
         return CalendarFragment.create(position);

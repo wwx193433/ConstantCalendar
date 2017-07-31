@@ -71,11 +71,14 @@ public class CalendarFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
-        LinearLayout calendarPage = (LinearLayout) LayoutInflater.from(activity).inflate(R.layout.calendar_page, parent, false);
+        LinearLayout calendarPage = (LinearLayout) LayoutInflater.from(activity).inflate(R.layout.calendar_page,parent,false);
         calendarPage.setTag("page" + pageNum);
 
         for(int i = 0;i<dates.size()/7;i++){
             LinearLayout row = (LinearLayout) LayoutInflater.from(activity).inflate(R.layout.calendar_item, parent, false);
+            LinearLayout.LayoutParams rowParams = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.FILL_PARENT, 1.0f);
+            row.setLayoutParams(rowParams);
             for(int k = 0;k<7;k++){
                 solarColor = blackColor;
                 lunarColor = Utility.setAlpha(blackColor, 80);
@@ -124,7 +127,6 @@ public class CalendarFragment extends Fragment {
 
                 ((TextView)day.getChildAt(0)).setTextColor(solarColor);
                 ((TextView)day.getChildAt(2)).setTextColor(lunarColor);
-
                 day.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -149,10 +151,22 @@ public class CalendarFragment extends Fragment {
 
         //设置阴历日期
         TextView lunar_text = (TextView) activity.findViewById(R.id.lunar_text);
-        String lunarAndWeek = calendarUtil.getLunarAndWeek(date);
-        lunar_text.setText(lunarAndWeek);
+        String lunarDate = calendarUtil.getLunarDate(date);
+        String week = calendarUtil.getWeekDay(date);
+        lunar_text.setText(lunarDate+" "+week);
+
+
+        //设置天干地支
+        TextView dv_solar_date = (TextView) activity.findViewById(R.id.dv_solar_date);
+        TextView dv_week = (TextView) activity.findViewById(R.id.dv_week);
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        String chineseYear = calendarUtil.getChineseYear(calendar.get(Calendar.YEAR));
+        dv_solar_date.setText(chineseYear+lunarDate);
+        dv_week.setText(week);
 
         LinearLayout container = (LinearLayout) viewPager.findViewWithTag("page"+position);
+
         for (int i = 0; i < container.getChildCount(); i++) {
             LinearLayout row = (LinearLayout) container.getChildAt(i);
             for(int j = 0;j<row.getChildCount();j++){

@@ -66,10 +66,23 @@ public class CalendarUtil {
         String week = "星期"+weekAry[index];
         return week;
     }
+    public String getChineseYear(int year){
+        return lunarCalendar.getChineseEra(year)+lunarCalendar.getZodiac(year)+"年";
+    }
 
     public String getLunarAndWeek(Date date) {
         DayInfo dayInfo = lunarCalendar.solarToLunar(date);
         return dayInfo.getLunarChinaMonth() + dayInfo.getLunarChinaDay() + " " + getWeekDay(date) ;
+    }
+
+    /**
+     * 获取农历日期
+     * @param date
+     * @return
+     */
+    public String getLunarDate(Date date){
+        DayInfo dayInfo = lunarCalendar.solarToLunar(date);
+        return dayInfo.getLunarChinaMonth() + dayInfo.getLunarChinaDay();
     }
 
     /**
