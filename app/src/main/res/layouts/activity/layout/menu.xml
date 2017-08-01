@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:opensky="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/menubar"
+    android:layout_width="match_parent"
+    android:layout_height="55dp"
+    android:background="@drawable/menu_border"
+    >
+    <LinearLayout
+        android:id="@+id/calendar_btn"
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical"
+        >
+        <com.sky.plug.widget.IconFontTextview
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            opensky:iconSize="22sp"
+            opensky:iconTop="@string/icon_calendar"
+            android:lineSpacingExtra="3dp"
+            android:gravity="center"
+            android:text="日历" />
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/attention_btn"
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        >
+        <com.sky.plug.widget.IconFontTextview
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            opensky:iconSize="22sp"
+            opensky:iconTop="@string/icon_attention"
+            android:lineSpacingExtra="3dp"
+            android:gravity="center"
+            android:text="提醒" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/find_btn"
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        >
+        <com.sky.plug.widget.IconFontTextview
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            opensky:iconSize="22sp"
+            opensky:iconTop="@string/icon_find"
+            android:lineSpacingExtra="3dp"
+            android:gravity="center"
+            android:text="发现" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/self_btn"
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        >
+        <com.sky.plug.widget.IconFontTextview
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            opensky:iconSize="22sp"
+            opensky:iconTop="@string/icon_self"
+            android:lineSpacingExtra="3dp"
+            android:gravity="center"
+            android:text="我的" />
+    </LinearLayout>
+</LinearLayout>

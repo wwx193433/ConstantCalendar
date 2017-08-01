@@ -251,7 +251,7 @@ public class DatePopupWindow extends PopupWindow implements android.view.View.On
         ArrayList<String> list;
 
         protected CalendarTextAdapter(Context context, ArrayList<String> list, int currentItem) {
-            super(context, R.layout.wheel_date_box, NO_RESOURCE, currentItem, MAXTEXTSIZE, MINTEXTSIZE);
+            super(context, R.layout.check_date, NO_RESOURCE, currentItem, MAXTEXTSIZE, MINTEXTSIZE);
             this.list = list;
             setItemTextResource(R.id.tempValue);
         }

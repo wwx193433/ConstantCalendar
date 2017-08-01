@@ -1,4 +1,4 @@
-package com.sky.constantcalendar;
+package com.sky.calendar;
 
 import android.app.Activity;
 import android.content.res.Resources;
@@ -12,15 +12,13 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.sky.calendar.DayInfo;
-import com.sky.calendar.LunarCalendar;
+import com.sky.constantcalendar.R;
 import com.sky.util.CalendarUtil;
 import com.sky.util.Constant;
 import com.sky.util.Utility;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -120,7 +118,7 @@ public class CalendarFragment extends Fragment {
                 }
 
                 //设置当天的背景色
-                if(sdf.format(cal.getTime()).equals(sdf.format(new Date()))){
+                if(sdf.format(cal.getTime()).equals(sdf.format(new java.util.Date()))){
                     day.setBackgroundResource(R.drawable.day_selected_special);
                     lunarColor = solarColor = whiteColor;
                 }
@@ -140,7 +138,7 @@ public class CalendarFragment extends Fragment {
         return calendarPage;
     }
 
-    public void setCalendar(Date date){
+    public void setCalendar(java.util.Date date){
         ViewPager viewPager = (ViewPager) activity.findViewById(R.id.viewPager);
         int position = calendarUtil.getMonthSpace(date)+Constant.pagecount/2;
         viewPager.setCurrentItem(position, true);
@@ -172,7 +170,7 @@ public class CalendarFragment extends Fragment {
             for(int j = 0;j<row.getChildCount();j++){
                 LinearLayout day = (LinearLayout)((LinearLayout) row.getChildAt(j)).getChildAt(0);
                 String solarDate = ((TextView)day.getChildAt(1)).getText().toString();
-                if(solarDate.equals(sdf.format(new Date()))){
+                if(solarDate.equals(sdf.format(new java.util.Date()))){
                     continue;
                 }
                 if (solarDate.equals(sdf.format(date))) {

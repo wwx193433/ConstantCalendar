@@ -6,7 +6,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.view.ViewGroup;
 
-import com.sky.constantcalendar.CalendarFragment;
+import com.sky.calendar.CalendarFragment;
 import com.sky.util.Constant;
 
 public class CalendarPagerAdapter extends FragmentPagerAdapter {

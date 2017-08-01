@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">生活万年历</string>
     <string name="action_settings">Settings</string>
+
+    <!-- 图标 -->
+    <string name="icon_calendar">&#xe6db;</string>
+    <string name="icon_find">&#xe657;</string>
+    <string name="icon_attention">&#xe63b;</string>
+    <string name="icon_self">&#xe604;</string>
 </resources>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="iconTop" format="string" />
+    <attr name="iconLeft" format="string" />
+    <attr name="iconRight" format="string" />
+    <attr name="iconBottom" format="string" />
+    <attr name="iconSize" format="dimension" />
+    <declare-styleable name="SkyText">
+        <attr name="iconTop"/>
+        <attr name="iconLeft"/>
+        <attr name="iconRight"/>
+        <attr name="iconBottom"/>
+        <attr name="iconSize"/>
+    </declare-styleable>
+</resources>
