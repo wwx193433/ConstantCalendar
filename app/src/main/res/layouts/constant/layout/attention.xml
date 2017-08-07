@@ -7,20 +7,15 @@
     android:fitsSystemWindows="true"
     tools:context="com.study.paramsend.MainActivity">
 
-    <include layout="@layout/header"/>
-
-    <include layout="@layout/calendar"/>
-
-    <include layout="@layout/divine"/>
-
     <LinearLayout
-        android:background="#ffffff"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <Button
+        android:layout_height="match_parent"
+        android:background="#ffffff"
+        >
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="测试"
+            android:text="......."
             />
     </LinearLayout>
 </LinearLayout>

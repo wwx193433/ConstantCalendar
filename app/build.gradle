@@ -22,8 +22,9 @@ android {
         main {
             res.srcDirs =
                     [
-                            'src/main/res/layouts/activity',
+                            'src/main/res/layouts/constant',
                             'src/main/res/layouts/calendar',
+                            'src/main/res/layouts/clock',
                             'src/main/res/layouts/divine',
                             'src/main/res/layouts',
                             'src/main/res/drawables/images',
@@ -34,7 +35,6 @@ android {
         }
     }
 }
-
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'

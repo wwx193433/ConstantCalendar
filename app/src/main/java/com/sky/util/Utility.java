@@ -32,7 +32,7 @@ public class Utility {
      */
     public static @ColorInt int setAlpha(@ColorInt int color, int percent){
         String hexColor = Integer.toHexString(color).substring(2);
-        hexColor = "#"+Integer.parseInt(percent+"")+hexColor;
+        hexColor = "#"+Integer.toHexString((int)(percent*2.55))+hexColor;
         return Color.parseColor(hexColor);
     }
 
@@ -54,6 +54,22 @@ public class Utility {
         WindowManager manager = (WindowManager) ct.getSystemService(Context.WINDOW_SERVICE);
         manager.getDefaultDisplay().getMetrics(metric);
         return metric.heightPixels;
+    }
+
+    /**
+     * 根据手机的分辨率从 dp 的单位 转成为 px(像素)
+     */
+    public static int getPx(Context context, float dpValue) {
+        final float scale = context.getResources().getDisplayMetrics().density;
+        return (int) (dpValue * scale + 0.5f);
+    }
+
+    /**
+     * 根据手机的分辨率从 px(像素) 的单位 转成为 dp
+     */
+    public static int getDip(Context context, float pxValue) {
+        final float scale = context.getResources().getDisplayMetrics().density;
+        return (int) (pxValue / scale + 0.5f);
     }
 
 }

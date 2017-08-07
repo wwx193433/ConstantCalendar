@@ -1,7 +1,6 @@
-package com.sky.calendar;
+package com.sky.model.calendar.widget;
 
 import com.sky.util.CalendarUtil;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -13,8 +12,7 @@ import java.util.Map;
 
 /**
  * <b>描述</b>: 日历转换工具类：阴历和阳历日期互换(阴历日期范围19000101~20491229)<br>
- *
- * @author liu 2015-1-5
+ * @author wwx193433 2015-1-5
  */
 public class LunarCalendar {
 
@@ -377,7 +375,7 @@ public class LunarCalendar {
         day.setLunarMonth(lunarMonth);
         day.setLunarDay(lunarDay);
         day.setLeapYear(leapMonthFlag);
-        day.setLunarChinaMonth(monthString[lunarMonth]);
+        day.setLunarChinaMonth((leapMonthFlag & (lunarMonth == leapMonth))?"闰"+monthString[lunarMonth]:monthString[lunarMonth]);
         day.setLunarChinaDay(getChinaDayString(lunarDay));
         day.setLeapMonth(leapMonthFlag & (lunarMonth == leapMonth));
         return day;
@@ -477,7 +475,7 @@ public class LunarCalendar {
             } else if (solarTermMap.containsKey(solarTimeKey)) {
                 lunarDay.setSpecailDay(solarTermMap.get(solarTimeKey));
             }
-            lunarDay.setLunarChinaMonth(monthString[month]);
+            lunarDay.setLunarChinaMonth(isLeapMonth?"闰"+monthString[month]:monthString[month]);
             lunarDay.setLunarChinaDay(getChinaDayString(day));
             lunarDays.add(lunarDay);
             day++;

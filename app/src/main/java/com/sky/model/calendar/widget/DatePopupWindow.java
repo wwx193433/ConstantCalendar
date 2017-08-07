@@ -1,29 +1,27 @@
-package com.sky.calendar;
+package com.sky.model.calendar.widget;
 
 import android.content.Context;
 import android.os.Build;
 import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.sky.constantcalendar.R;
-import com.sky.plug.wheel.adapters.AbstractWheelTextAdapter;
+import com.sky.plug.wheel.adapters.WheelTextAdapter;
 import com.sky.plug.wheel.views.OnWheelChangedListener;
-import com.sky.plug.wheel.views.OnWheelScrollListener;
 import com.sky.plug.wheel.views.WheelView;
 import com.sky.util.CalendarUtil;
 
 import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
 /**
  * Created by Administrator on 17-7-21.
+ * 头部日期弹出框
  */
 public class DatePopupWindow extends PopupWindow implements android.view.View.OnClickListener {
 
@@ -45,23 +43,25 @@ public class DatePopupWindow extends PopupWindow implements android.view.View.On
 
 
     //年月日数据集合
-    private ArrayList<String> yearList = new ArrayList<String>();
-    private ArrayList<String> monthList = new ArrayList<String>();
-    private ArrayList<String> dayList = new ArrayList<String>();
+    private ArrayList<String> yearList = new ArrayList<>();
+    private ArrayList<String> monthList = new ArrayList<>();
+    private ArrayList<String> dayList = new ArrayList<>();
 
     //年月日适配器
-    private CalendarTextAdapter mYearAdapter;
-    private CalendarTextAdapter mMonthAdapter;
-    private CalendarTextAdapter mDayAdapter;
+    private WheelTextAdapter mYearAdapter;
+    private WheelTextAdapter mMonthAdapter;
+    private WheelTextAdapter mDayAdapter;
 
     //选中的年月日下表
     private int selectYearIndex, selectMonthIndex, selectDayIndex;
 
     //最大显示文字
-    private static final int MAXTEXTSIZE = 16;
+    private static final int MAXTEXTSIZE = 20;
     //最小显示文字
-    private static final int MINTEXTSIZE = 13;
-    private static final int VISIBLEITEMS = 5;
+    private static final int MINTEXTSIZE = 15;
+    private static final int VISIBLEITEMS = 3;
+
+    private int specialColor,grayColor;
 
     public void setDefaultDate(Date defaultDate) {
         this.defaultDate = defaultDate;
@@ -86,7 +86,6 @@ public class DatePopupWindow extends PopupWindow implements android.view.View.On
     }
 
     private void init(View view) {
-
         //初始化年、月、日三个选择器
         wvYear = (WheelView) view.findViewById(R.id.yearView);
         wvMonth = (WheelView) view.findViewById(R.id.monthView);
@@ -105,22 +104,7 @@ public class DatePopupWindow extends PopupWindow implements android.view.View.On
             @Override
             public void onChanged(WheelView wheel, int oldValue, int newValue) {
                 selectYearIndex = newValue;
-                String currentText = (String) mYearAdapter.getItemText(wheel.getCurrentItem());
-                setTextStyle(currentText, mYearAdapter);
                 setDay();
-            }
-        });
-        wvYear.addScrollingListener(new OnWheelScrollListener() {
-            @Override
-            public void onScrollingStarted(WheelView wheel) {
-                // TODO Auto-generated method stub
-            }
-
-            @Override
-            public void onScrollingFinished(WheelView wheel) {
-                // TODO Auto-generated method stub
-                String currentText = (String) mYearAdapter.getItemText(wheel.getCurrentItem());
-                setTextStyle(currentText, mYearAdapter);
             }
         });
 
@@ -130,20 +114,7 @@ public class DatePopupWindow extends PopupWindow implements android.view.View.On
             @Override
             public void onChanged(WheelView wheel, int oldValue, int newValue) {
                 selectMonthIndex = newValue;
-                String currentText = (String) mMonthAdapter.getItemText(wheel.getCurrentItem());
-                setTextStyle(currentText, mMonthAdapter);
                 setDay();
-            }
-        });
-        wvMonth.addScrollingListener(new OnWheelScrollListener() {
-            @Override
-            public void onScrollingStarted(WheelView wheel) {
-                // TODO Auto-generated method stub
-            }
-
-            @Override
-            public void onScrollingFinished(WheelView wheel) {
-                // TODO Auto-generated method stub
             }
         });
 
@@ -153,47 +124,48 @@ public class DatePopupWindow extends PopupWindow implements android.view.View.On
             @Override
             public void onChanged(WheelView wheel, int oldValue, int newValue) {
                 selectDayIndex = newValue;
-                String currentText = (String) mDayAdapter.getItemText(wheel.getCurrentItem());
-                setTextStyle(currentText, mDayAdapter);
-            }
-        });
-
-        wvDay.addScrollingListener(new OnWheelScrollListener() {
-            @Override
-            public void onScrollingStarted(WheelView wheel) {
-                // TODO Auto-generated method stub
-            }
-
-            @Override
-            public void onScrollingFinished(WheelView wheel) {
-                // TODO Auto-generated method stub
             }
         });
     }
 
     public void setYear() {
         initYears();
-        mYearAdapter = new CalendarTextAdapter(context, yearList, selectYearIndex);
+        mYearAdapter = new WheelTextAdapter(context, yearList);
+        mYearAdapter.setCurrentIndex(selectYearIndex);
+        mYearAdapter.setStyle("", MAXTEXTSIZE, MINTEXTSIZE);
+        mYearAdapter.setVisibleItems(VISIBLEITEMS);
+
         wvYear.setVisibleItems(VISIBLEITEMS);
         wvYear.setCyclic(true);
+        wvYear.setStyle(MAXTEXTSIZE, MINTEXTSIZE);
         wvYear.setViewAdapter(mYearAdapter);
         wvYear.setCurrentItem(selectYearIndex);
     }
 
     public void setMonth() {
         initMonths();
-        mMonthAdapter = new CalendarTextAdapter(context, monthList, selectMonthIndex);
+        mMonthAdapter = new WheelTextAdapter(context, monthList);
+        mMonthAdapter.setCurrentIndex(selectMonthIndex);
+        mMonthAdapter.setStyle("", MAXTEXTSIZE, MINTEXTSIZE);
+        mMonthAdapter.setVisibleItems(VISIBLEITEMS);
+
         wvMonth.setVisibleItems(VISIBLEITEMS);
         wvMonth.setCyclic(true);
+        wvMonth.setStyle(MAXTEXTSIZE, MINTEXTSIZE);
         wvMonth.setViewAdapter(mMonthAdapter);
         wvMonth.setCurrentItem(selectMonthIndex);
     }
 
     public void setDay() {
         initDays();
-        mDayAdapter = new CalendarTextAdapter(context, dayList, selectDayIndex);
+        mDayAdapter = new WheelTextAdapter(context, dayList);
+        mDayAdapter.setCurrentIndex(selectDayIndex);
+        mDayAdapter.setStyle("", MAXTEXTSIZE, MINTEXTSIZE);
+        mDayAdapter.setVisibleItems(VISIBLEITEMS);
+
         wvDay.setVisibleItems(VISIBLEITEMS);
         wvDay.setCyclic(true);
+        wvDay.setStyle(MAXTEXTSIZE, MINTEXTSIZE);
         wvDay.setViewAdapter(mDayAdapter);
         wvDay.setCurrentItem(selectDayIndex);
     }
@@ -247,31 +219,7 @@ public class DatePopupWindow extends PopupWindow implements android.view.View.On
         }
     }
 
-    private class CalendarTextAdapter extends AbstractWheelTextAdapter {
-        ArrayList<String> list;
 
-        protected CalendarTextAdapter(Context context, ArrayList<String> list, int currentItem) {
-            super(context, R.layout.check_date, NO_RESOURCE, currentItem, MAXTEXTSIZE, MINTEXTSIZE);
-            this.list = list;
-            setItemTextResource(R.id.tempValue);
-        }
-
-        @Override
-        public View getItem(int index, View cachedView, ViewGroup parent) {
-            View view = super.getItem(index, cachedView, parent);
-            return view;
-        }
-
-        @Override
-        public int getItemsCount() {
-            return list.size();
-        }
-
-        @Override
-        protected CharSequence getItemText(int index) {
-            return list.get(index) + "";
-        }
-    }
 
     @Override
     public void onClick(View v) {
@@ -279,7 +227,6 @@ public class DatePopupWindow extends PopupWindow implements android.view.View.On
         switch(v.getId()){
             case R.id.date_select_confirm:
 
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                 Calendar calendar = Calendar.getInstance();
                 String yearString = yearList.get(selectYearIndex);
                 String monthString = monthList.get(selectMonthIndex);
@@ -302,36 +249,15 @@ public class DatePopupWindow extends PopupWindow implements android.view.View.On
                 break;
         }
     }
-
-    /**
-     * 设置字体大小
-     *
-     * @param currentItemText
-     * @param adapter
-     */
-    public void setTextStyle(String currentItemText, CalendarTextAdapter adapter) {
-        ArrayList<View> list = adapter.getTestViews();
-        String currentText;
-        for (int i = 0; i < list.size(); i++) {
-            TextView tv = (TextView) list.get(i);
-            currentText = tv.getText().toString();
-            if (currentItemText.equals(currentText)) {
-                tv.setTextSize(MAXTEXTSIZE);
-            } else {
-                tv.setTextSize(MINTEXTSIZE);
-            }
-        }
-    }
-
     public void onSelectedDate(DateSelectInterface dateSelectInterface){
-            this.dateSelectInterface = dateSelectInterface;
+        this.dateSelectInterface = dateSelectInterface;
     }
 
     /**
      * 定义回调接口
      */
     public interface DateSelectInterface{
-        public void onDateSelectedCallBack(Date date);
+        void onDateSelectedCallBack(Date date);
     }
 
     @Override
@@ -344,5 +270,4 @@ public class DatePopupWindow extends PopupWindow implements android.view.View.On
             super.showAsDropDown(anchor);
         }
     }
-
 }

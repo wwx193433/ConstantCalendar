@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="iconTop" format="string" />
+    <attr name="iconLeft" format="string" />
+    <attr name="iconRight" format="string" />
+    <attr name="iconBottom" format="string" />
+    <attr name="iconOpen" format="string" />
+    <attr name="iconClose" format="string" />
+    <attr name="iconFont" format="string" />
+    <attr name="iconUncheck" format="string" />
+    <attr name="iconChecked" format="string" />
+    <attr name="iconSize" format="dimension" />
+    <attr name="open" format="boolean" />
+    <attr name="openColor" format="integer" />
+    <attr name="checkedColor" format="integer" />
+    <declare-styleable name="SkyText">
+        <attr name="iconTop"/>
+        <attr name="iconLeft"/>
+        <attr name="iconRight"/>
+        <attr name="iconBottom"/>
+        <attr name="iconFont"/>
+        <attr name="iconUncheck"/>
+        <attr name="iconChecked"/>
+        <attr name="iconOpen"/>
+        <attr name="iconClose"/>
+        <attr name="iconSize"/>
+        <attr name="open"/>
+        <attr name="openColor"/>
+        <attr name="checkedColor"/>
+    </declare-styleable>
+</resources>

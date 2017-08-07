@@ -39,15 +39,13 @@
     </RelativeLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="180dp"
         android:orientation="horizontal"
-        android:background="#f5f5f5"
         android:gravity="center_vertical">
         <com.sky.plug.wheel.views.WheelView
             android:id="@+id/yearView"
             android:layout_width="0dip"
             android:layout_weight="1"
-            android:background="#ff0000"
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
             />
@@ -55,7 +53,6 @@
             android:id="@+id/monthView"
             android:layout_width="0dip"
             android:layout_weight="1"
-            android:background="#0000ff"
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
             />
@@ -63,7 +60,6 @@
             android:id="@+id/dayView"
             android:layout_width="0dip"
             android:layout_weight="1"
-            android:background="#00ff00"
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
             />

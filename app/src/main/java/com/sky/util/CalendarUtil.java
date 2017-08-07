@@ -1,7 +1,7 @@
 package com.sky.util;
 
-import com.sky.calendar.DayInfo;
-import com.sky.calendar.LunarCalendar;
+import com.sky.model.calendar.widget.DayInfo;
+import com.sky.model.calendar.widget.LunarCalendar;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

@@ -1,10 +1,11 @@
-package com.sky.calendar;
+package com.sky.model.calendar.widget;
 
 import java.util.HashMap;
 import java.util.Map;
 
 /**
  * @author:wwx193433 describe：24节气
+ * 24节气封装
  */
 public class SolarTerms {
 	private static final double D = 0.2422;

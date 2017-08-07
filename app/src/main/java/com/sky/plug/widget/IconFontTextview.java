@@ -8,7 +8,6 @@ import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.style.AbsoluteSizeSpan;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.widget.TextView;
 
 import com.sky.constantcalendar.R;
@@ -19,6 +18,11 @@ import com.sky.constantcalendar.R;
 public class IconFontTextview extends TextView {
 
     int num = 0;//0 1 2 3  上右下左
+
+    private String icon;
+    private String content = "";
+    private int start=0, end = 0;
+    float iconSize = 0.0f;
 
     public IconFontTextview(Context context) {
         super(context);
@@ -36,8 +40,11 @@ public class IconFontTextview extends TextView {
 
         TypedArray a = context.getTheme().obtainStyledAttributes(attrs, R.styleable.SkyText, defStyleAttr, 0);
 
-        //获取图标
-        String icon = a.getString(R.styleable.SkyText_iconTop);
+        if(icon == null){
+            //获取图标
+            icon = a.getString(R.styleable.SkyText_iconTop);
+        }
+
         if(icon == null){
             num = 1;
             icon = a.getString(R.styleable.SkyText_iconRight);
@@ -47,19 +54,21 @@ public class IconFontTextview extends TextView {
                 if(icon == null){
                     num = 3;
                     icon = a.getString(R.styleable.SkyText_iconLeft);
+                    if(icon == null){
+                        num = 4;
+                        icon = this.getText().toString();
+                    }
                 }
             }
         }
-        float iconSize = a.getDimension(R.styleable.SkyText_iconSize, -1);
-        Log.i("tag", "iconSize:"+iconSize);
+        iconSize = a.getDimension(R.styleable.SkyText_iconSize, -1);
         if(iconSize == -1.0){
             iconSize = this.getTextSize();
         }
 
         //获取文字
         String text = this.getText().toString();
-        String content = "";
-        int start=0, end = 0;
+
         switch(num){
             case 0:// 上
                 content = icon+"\n"+text;
@@ -78,6 +87,11 @@ public class IconFontTextview extends TextView {
                 break;
             case 3:// 左
                 content = icon+" "+text;
+                start = 0;
+                end = icon.length();
+                break;
+            case 4:// 左
+                content = icon;
                 start = 0;
                 end = icon.length();
                 break;

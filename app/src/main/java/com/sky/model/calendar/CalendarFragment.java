@@ -1,4 +1,4 @@
-package com.sky.calendar;
+package com.sky.model.calendar;
 
 import android.app.Activity;
 import android.content.res.Resources;
@@ -13,6 +13,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.sky.constantcalendar.R;
+import com.sky.model.calendar.widget.DayInfo;
+import com.sky.model.calendar.widget.LunarCalendar;
 import com.sky.util.CalendarUtil;
 import com.sky.util.Constant;
 import com.sky.util.Utility;
@@ -23,6 +25,7 @@ import java.util.List;
 
 /**
  * Created by Administrator on 17-7-18.
+ * Calendar切换Fragment
  */
 public class CalendarFragment extends Fragment {
 
@@ -113,8 +116,8 @@ public class CalendarFragment extends Fragment {
 
                 //设置非当月文字透明度
                 if(cal.get(Calendar.MONTH) != currentCalendar.get(Calendar.MONTH)){
-                    solarColor = Utility.setAlpha(solarColor, 60);
-                    lunarColor = Utility.setAlpha(lunarColor, 60);
+                    solarColor = Utility.setAlpha(solarColor, 40);
+                    lunarColor = Utility.setAlpha(lunarColor, 40);
                 }
 
                 //设置当天的背景色

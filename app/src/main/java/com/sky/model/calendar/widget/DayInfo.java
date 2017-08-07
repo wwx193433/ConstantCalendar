@@ -1,7 +1,10 @@
-package com.sky.calendar;
+package com.sky.model.calendar.widget;
 
 import java.util.Date;
 
+/**
+ * 每日封装
+ */
 public class DayInfo {
 
     // 阳历日期

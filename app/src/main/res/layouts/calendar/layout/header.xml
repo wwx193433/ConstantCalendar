@@ -44,21 +44,27 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/menuBtn"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_alignParentRight="true"
         android:paddingLeft="10dp"
         android:paddingRight="10dp">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:src="@drawable/more" />
+        <com.sky.plug.widget.IconFontTextview
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="25sp"
+            android:text="@string/icon_menu"
+            />
     </LinearLayout>
 
 
     <LinearLayout
-        android:id="@+id/layout_date"
+        android:id="@+id/header_date"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_centerInParent="true"
@@ -101,5 +107,4 @@
             android:layout_toRightOf="@+id/id_dt_tv"
             android:src="@drawable/arrow_down" />
     </LinearLayout>
-
 </RelativeLayout>
