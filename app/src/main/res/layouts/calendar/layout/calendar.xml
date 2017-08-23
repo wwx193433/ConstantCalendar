@@ -1,32 +1,37 @@
 <android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:opensky="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawerCalendar"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/drawerCalendar"
-    android:background="@color/black"
     tools:context="com.study.paramsend.MainActivity">
 
-    <LinearLayout
+    <ScrollView
+        android:id="@+id/homeScroller"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <include layout="@layout/calendar_frame" />
-
-        <include layout="@layout/divine" />
+        android:background="#f6f6f6"
+        android:scrollbars="none"
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#ffffff">
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="测试" />
-        </LinearLayout>
-    </LinearLayout>
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
+            <include layout="@layout/calendar_frame" />
+
+            <include layout="@layout/divine" />
+
+            <include layout="@layout/clock_list" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="@color/white"
+                ></LinearLayout>
+        </LinearLayout>
+    </ScrollView>
     <!--右边侧滑-->
     <LinearLayout
         android:id="@+id/rightMenu"
@@ -42,55 +47,55 @@
             android:layout_width="110dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:textSize="15sp"
-            opensky:iconSize="16sp"
+            android:text=" 节假日"
             android:textColor="@color/black"
+            android:textSize="15sp"
             opensky:iconLeft="@string/icon_holiday"
-            android:text=" 节假日" />
+            opensky:iconSize="16sp" />
 
         <com.sky.plug.widget.IconFontTextview
             android:id="@+id/clm_note"
             android:layout_width="110dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:textSize="15sp"
-            opensky:iconSize="16sp"
+            android:text=" 记事"
             android:textColor="@color/black"
+            android:textSize="15sp"
             opensky:iconLeft="@string/icon_note"
-            android:text=" 记事" />
+            opensky:iconSize="16sp" />
 
         <com.sky.plug.widget.IconFontTextview
             android:id="@+id/clm_clock"
             android:layout_width="110dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:textSize="15sp"
-            opensky:iconSize="16sp"
+            android:text=" 闹钟"
             android:textColor="@color/black"
+            android:textSize="15sp"
             opensky:iconLeft="@string/icon_clock"
-            android:text=" 闹钟" />
+            opensky:iconSize="16sp" />
 
         <com.sky.plug.widget.IconFontTextview
             android:id="@+id/clm_comment"
             android:layout_width="110dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:textSize="15sp"
-            opensky:iconSize="16sp"
+            android:text=" 意见反馈"
             android:textColor="@color/black"
+            android:textSize="15sp"
             opensky:iconLeft="@string/icon_comment"
-            android:text=" 意见反馈" />
+            opensky:iconSize="16sp" />
 
         <com.sky.plug.widget.IconFontTextview
             android:id="@+id/clm_setting"
             android:layout_width="110dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:textSize="15sp"
-            opensky:iconSize="16sp"
+            android:text=" 设置"
             android:textColor="@color/black"
+            android:textSize="15sp"
             opensky:iconLeft="@string/icon_setting"
-            android:text=" 设置" />
+            opensky:iconSize="16sp" />
     </LinearLayout>
 
 </android.support.v4.widget.DrawerLayout>

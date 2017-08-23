@@ -11,8 +11,4 @@
     <include layout="@layout/clock_header"/>
     <include layout="@layout/hour_minute"/>
     <include layout="@layout/clock_form"/>
-
-
-
-
 </LinearLayout>

@@ -122,4 +122,9 @@ public class CalendarUtil {
         }
         return "";
     }
+
+    public String getCurrentDayAndWeek(){
+        Calendar calendar = Calendar.getInstance();
+        return sdf.format(calendar.getTime())+" "+ getWeekString(calendar);
+    }
 }

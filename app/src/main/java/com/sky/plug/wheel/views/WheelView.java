@@ -24,6 +24,8 @@ import android.database.DataSetObserver;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -44,6 +46,8 @@ import java.util.List;
  * @author Yuri Kanivets
  */
 public class WheelView extends View {
+	private SoundPool sp;
+	int music;
 
 	/** Top and bottom shadows colors */
 	private static final int[] SHADOWS_COLORS = new int[] { 0xeeffffff, 0xaaffffff, 0x00ffffff };
@@ -116,6 +120,14 @@ public class WheelView extends View {
 	public WheelView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		initData(context);
+		sp= new SoundPool(10, AudioManager.STREAM_SYSTEM, 5);//第一个参数为同时播放数据流的最大个数，第二数据流类型，第三为声音质量
+		music = sp.load(context, R.raw.dong, 1); //把你的声音素材放
+		this.addChangingListener(new OnWheelChangedListener() {
+			@Override
+			public void onChanged(WheelView wheel, int oldValue, int newValue) {
+				sp.play(music, 1, 1, 0, 0, 1);
+			}
+		});
 	}
 
 	public void setStyle(int maxSize, int minSize){
@@ -255,7 +267,7 @@ public class WheelView extends View {
 
 	/**
 	 * Adds wheel changing listener
-	 * 
+	 *
 	 * @param listener
 	 *            the listener
 	 */
@@ -459,6 +471,7 @@ public class WheelView extends View {
 			recycle.recycleItems(itemsLayout, firstItem, new ItemsRange());
 		}
 
+
 		invalidate();
 	}
 
@@ -644,11 +657,17 @@ public class WheelView extends View {
 		int dh = -top + scrollingOffset;
 		canvas.translate(PADDING, dh);
 
-		itemsLayout.draw(canvas);
+
+		TextView tv0= ((TextView)itemsLayout.getChildAt(0));
 		TextView tv1= ((TextView)itemsLayout.getChildAt(1));
 		TextView tv2= ((TextView)itemsLayout.getChildAt(2));
+
 		tv1.setTextSize((maxSize+(dh/rate))>minSize?(maxSize+(dh/rate)):minSize);
-		tv2.setTextSize((minSize-(dh/rate))<maxSize?(minSize-(dh/rate)):maxSize);
+		tv2.setTextSize((minSize - (dh / rate)) < maxSize ? (minSize - (dh / rate)) : maxSize);
+		if(dh == 0){
+			tv0.setTextSize(minSize);
+		}
+		itemsLayout.draw(canvas);
 		canvas.restore();
 	}
 
@@ -884,7 +903,6 @@ public class WheelView extends View {
 		int addItems = visibleItems / 2;
 		for (int i = currentItem + addItems; i >= currentItem - addItems; i--) {
 			if (addViewItem(i, true)) {
-				firstItem = i;
 			}
 		}
 	}

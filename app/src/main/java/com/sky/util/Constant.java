@@ -1,5 +1,7 @@
 package com.sky.util;
 
+import com.sky.constantcalendar.R;
+
 /**
  * Created by Administrator on 17-7-12.
  */
@@ -19,4 +21,15 @@ public class Constant {
     public static final int IS_FINISH = 1;
 
     public static final String LUNARNAME = "农历";
+
+    //默认音乐
+    public static final String DEFAULT_RING_NAME = "默认铃声";
+    public static final String DEFAULT_RING_URL = "android.resource://com.sky.constantcalendar/"+ R.raw.clock;
+
+    public static final String RING = "ring";
+    public static final String MUSIC = "music";
+    //起床
+    public static final String GETUPCLOCKSTRING = "起床闹钟";
+
+
 }

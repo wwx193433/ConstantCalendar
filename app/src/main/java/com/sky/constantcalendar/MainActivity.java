@@ -1,5 +1,6 @@
 package com.sky.constantcalendar;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -7,6 +8,8 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.sky.system.PermissionTool;
 
 /**
  * Created by Administrator on 17-7-31.
@@ -17,6 +20,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     private AttentionFragment attentionFragment;
     private FindFragment findFragment;
     private SelfFragment selfFragment;
+    private PermissionTool permissionTool;
 
     private LinearLayout menubar;
 
@@ -32,9 +36,14 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
         // 初始化并设置当前Fragment
         initFragment(0);
+
+        //外部存储卡读写权限申请
+        permissionTool.applyStoragePermission();
+
     }
 
     private void initView() {
+        permissionTool = new PermissionTool(this);
         menubar = (LinearLayout) this.findViewById(R.id.menubar);
         calendar_btn = (LinearLayout) this.findViewById(R.id.calendar_btn);
         attention_btn = (LinearLayout) this.findViewById(R.id.attention_btn);
@@ -134,5 +143,11 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
             default:
                 break;
         }
+    }
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }

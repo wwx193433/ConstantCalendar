@@ -2,6 +2,7 @@ package com.sky.model.calendar;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Gravity;
 import android.view.View;
@@ -9,7 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.sky.constantcalendar.R;
-import com.sky.model.menu.ClockActivity;
+import com.sky.model.menu.clock.ClockActivity;
 import com.sky.plug.widget.IconFontTextview;
 import com.sky.util.Utility;
 
@@ -19,10 +20,30 @@ import com.sky.util.Utility;
  */
 public class CalendarDrawerMenu implements View.OnClickListener{
 
+    //节假日标识
+    public static final int HOLIDAYREQUESTCODE = 0x10;
+    public static final int HOLIDAYRESULTCODE = 0x11;
+
+    // 记事
+    public static final int NOTEREQUESTCODE = 0x20;
+    public static final int NOTERESULTCODE = 0x21;
+    // 闹钟标识
+    public static final int CLOCKREQUESTCODE = 0x30;
+    public static final int CLOCKRESULTCODE = 0x31;
+
+    // 意见
+    public static final int COMMENTREQUESTCODE = 0x40;
+    public static final int COMMENTRESULTCODE = 0x41;
+    // 设置
+    public static final int SETTINGREQUESTCODE = 0x50;
+    public static final int SETTINGRESULTCODE = 0x51;
+
+
     //父View
     private View view;
     //主Activity
     private Activity activity;
+    private Fragment fragment;
     //菜单背景颜色
     private int bgColor;
     private int specialColor;
@@ -36,7 +57,8 @@ public class CalendarDrawerMenu implements View.OnClickListener{
     //右部菜单
     private LinearLayout rightMenu;
 
-    public CalendarDrawerMenu(Activity activity){
+    public CalendarDrawerMenu(Fragment fragment, Activity activity){
+        this.fragment = fragment;
         this.activity = activity;
     }
 
@@ -129,7 +151,8 @@ public class CalendarDrawerMenu implements View.OnClickListener{
                 break;
             case R.id.clm_clock://闹钟
                 Intent intent = new Intent(activity, ClockActivity.class);
-                activity.startActivity(intent);
+                intent.setAction(String.valueOf(System.currentTimeMillis()));
+                fragment.startActivityForResult(intent, CLOCKREQUESTCODE);
                 toggleDrawerLayout();
                 focusMenu(0);
                 break;
@@ -158,4 +181,5 @@ public class CalendarDrawerMenu implements View.OnClickListener{
             }
         }
     }
+
 }

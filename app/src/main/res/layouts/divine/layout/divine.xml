@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:opensky="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#ffffff"
+    android:background="@drawable/shadow_panel"
+    android:layout_marginLeft="1dp"
+    android:layout_marginRight="1dp"
+    android:layout_marginTop="5dp"
     >
 
     <LinearLayout
@@ -15,8 +19,8 @@
             android:id="@+id/dv_solar_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="22sp"
-            android:layout_marginLeft="10dp"
+            android:textSize="25sp"
+            android:layout_marginLeft="5dp"
             android:textColor="@color/special"
             android:typeface="serif"
             android:text="农历闰六月廿六"
@@ -25,10 +29,48 @@
             android:id="@+id/dv_week"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="13sp"
+            android:textSize="15sp"
             android:layout_marginLeft="10dp"
             android:text="星期四"
             />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+
+        android:paddingTop="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="20dp"
+        >
+        <com.sky.plug.widget.IconFontTextview
+            android:id="@+id/should"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            opensky:iconSize="14sp"
+            opensky:iconColor="@color/green"
+            opensky:iconLeft="@string/icon_should"
+            android:gravity="left"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="嫁娶 纳彩 订盟 祭祀 开光 出行 理发 动土 安床 放水 开渠 栽种 进口" />
+        <com.sky.plug.widget.IconFontTextview
+            android:id="@+id/avoid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textSize="14sp"
+            opensky:iconSize="14sp"
+            opensky:iconColor="@color/red"
+            opensky:iconLeft="@string/icon_avoid"
+            android:gravity="left"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="入宅 上梁 入殓 盖屋 探病 做灶 安门 安葬 纳畜 伐木 探病 做灶" />
+
+
     </LinearLayout>
 
 </LinearLayout>

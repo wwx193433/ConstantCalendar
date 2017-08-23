@@ -7,6 +7,7 @@ import android.graphics.Typeface;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.style.AbsoluteSizeSpan;
+import android.text.style.ForegroundColorSpan;
 import android.util.AttributeSet;
 import android.widget.TextView;
 
@@ -22,6 +23,7 @@ public class IconFontTextview extends TextView {
     private String icon;
     private String content = "";
     private int start=0, end = 0;
+    private int iconColor, textColor;
     float iconSize = 0.0f;
 
     public IconFontTextview(Context context) {
@@ -45,6 +47,13 @@ public class IconFontTextview extends TextView {
             icon = a.getString(R.styleable.SkyText_iconTop);
         }
 
+        if(iconColor == 0){
+            iconColor = a.getColor(R.styleable.SkyText_iconColor, 0);
+            if(iconColor == 0){
+                iconColor = this.getCurrentTextColor();
+            }
+        }
+
         if(icon == null){
             num = 1;
             icon = a.getString(R.styleable.SkyText_iconRight);
@@ -61,6 +70,8 @@ public class IconFontTextview extends TextView {
                 }
             }
         }
+
+        textColor = this.getCurrentTextColor();
         iconSize = a.getDimension(R.styleable.SkyText_iconSize, -1);
         if(iconSize == -1.0){
             iconSize = this.getTextSize();
@@ -101,6 +112,7 @@ public class IconFontTextview extends TextView {
 
         SpannableStringBuilder builder = new SpannableStringBuilder(content);
         builder.setSpan(new AbsoluteSizeSpan((int) iconSize), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        builder.setSpan(new ForegroundColorSpan(iconColor), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         this.setText(builder);
         a.recycle();  //注意回收
     }

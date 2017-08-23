@@ -1,17 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.sky.constantcalendar" >
+    package="com.sky.constantcalendar">
+
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
         android:allowBackup="true"
         android:icon="@drawable/life"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
+
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/TranslucentTheme" >
+            android:theme="@style/TranslucentTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,9 +28,39 @@
         </activity>
 
         <activity
-            android:name="com.sky.model.menu.ClockActivity"
-            android:theme="@style/TranslucentTheme">
-        </activity>
+            android:name="com.sky.model.menu.clock.ClockActivity"
+            android:theme="@style/TranslucentTheme"
+            android:windowSoftInputMode="adjustPan"></activity>
+
+        <activity
+            android:name="com.sky.model.menu.clock.bell.BellActivity"
+            android:theme="@style/TranslucentTheme"></activity>
+
+        <!-- 闹钟广播 -->
+        <receiver
+            android:name="com.sky.model.menu.clock.widget.AlarmReceiver"
+            android:process=":remote">
+            <intent-filter>
+                <action android:name="com.sky.model.clock.action" />
+            </intent-filter>
+        </receiver>
+        <!-- 开机触发广播 -->
+        <receiver android:name="com.sky.model.menu.clock.widget.BootReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <!-- 将闹钟页面置于锁屏界面上-->
+        <activity
+            android:name="com.sky.model.menu.clock.RingActivity"
+            android:configChanges="orientation|keyboardHidden|keyboard|navigation"
+            android:excludeFromRecents="true"
+            android:label="@string/app_name"
+            android:launchMode="singleTask"
+            android:taskAffinity=""
+            android:theme="@android:style/Theme.Wallpaper.NoTitleBar" />
+
     </application>
 
 </manifest>

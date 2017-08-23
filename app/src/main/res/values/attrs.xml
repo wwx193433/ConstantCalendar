@@ -9,6 +9,7 @@
     <attr name="iconFont" format="string" />
     <attr name="iconUncheck" format="string" />
     <attr name="iconChecked" format="string" />
+    <attr name="iconColor" format="integer" />
     <attr name="iconSize" format="dimension" />
     <attr name="open" format="boolean" />
     <attr name="openColor" format="integer" />
@@ -23,6 +24,7 @@
         <attr name="iconChecked"/>
         <attr name="iconOpen"/>
         <attr name="iconClose"/>
+        <attr name="iconColor"/>
         <attr name="iconSize"/>
         <attr name="open"/>
         <attr name="openColor"/>

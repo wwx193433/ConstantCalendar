@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    android:background="@color/special"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        >
+        <com.sky.plug.widget.IconFontTextview
+            android:id="@+id/bc_back"
+            android:layout_alignParentLeft="true"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:gravity="center"
+            android:text="@string/icon_back" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:text="选择铃声"
+            />
+        <com.sky.plug.widget.IconFontTextview
+            android:id="@+id/bc_confirm"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:gravity="center"
+            android:text="@string/icon_confirm" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/bellMenuBar"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:orientation="horizontal"
+        android:paddingBottom="1dp"
+        android:background="@drawable/item_bottom_border"
+        >
+        <TextView
+            android:id="@+id/musicBtn"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="手机歌曲"
+            android:gravity="center"
+            />
+        <TextView
+            android:id="@+id/alarmBtn"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="系统铃声"
+            android:gravity="center"
+            />
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/bell_frame"
+        android:layout_width="match_parent"
+        android:background="#ffffff"
+        android:layout_height="0dp"
+        android:layout_weight="1" >
+    </FrameLayout>
+
+</LinearLayout>

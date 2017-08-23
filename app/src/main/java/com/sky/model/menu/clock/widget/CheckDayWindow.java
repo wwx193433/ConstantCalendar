@@ -1,4 +1,4 @@
-package com.sky.model.menu.widget;
+package com.sky.model.menu.clock.widget;
 
 import android.content.Context;
 import android.os.Build;

@@ -6,6 +6,7 @@
     android:background="@color/white"
     >
     <LinearLayout
+        android:id="@+id/titleBtn"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:orientation="horizontal"
@@ -20,17 +21,15 @@
             />
         <EditText
             android:id="@+id/bell_title"
-            android:layout_width="wrap_content"
-            android:layout_weight="1"
+            android:layout_width="1dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:layout_gravity="center_vertical"
             android:gravity="right"
             android:singleLine="true"
-            android:background="@null"
             android:textSize="13sp"
             android:textColor="#444444"
-            android:textCursorDrawable="@null"
-            android:hint="如：懒虫起床"
+            android:background="@null"
             />
         <com.sky.plug.widget.IconFontTextview
             android:layout_width="20dp"
@@ -117,6 +116,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/bellSongBtn"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:orientation="horizontal"
@@ -130,7 +130,7 @@
             android:text="铃声设置"
             />
         <TextView
-            android:id="@+id/bellMusicText"
+            android:id="@+id/bellSongText"
             android:layout_width="1dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -140,9 +140,15 @@
             android:textSize="13sp"
             android:background="@null"
             android:textColor="#444444"
+            android:text="默认铃声"
             />
         <TextView
-            android:id="@+id/bellMusicValue"
+            android:id="@+id/bellSongValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"/>
+        <TextView
+            android:id="@+id/bellType"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="gone"/>

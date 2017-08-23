@@ -1,5 +1,6 @@
 package com.sky.model.calendar.widget;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.os.Build;
 import android.view.Gravity;
@@ -23,8 +24,8 @@ import java.util.Date;
  * Created by Administrator on 17-7-21.
  * 头部日期弹出框
  */
+@TargetApi(Build.VERSION_CODES.LOLLIPOP)
 public class DatePopupWindow extends PopupWindow implements android.view.View.OnClickListener {
-
     DecimalFormat df = new DecimalFormat("00");
 
     Calendar cal = Calendar.getInstance();
@@ -56,9 +57,9 @@ public class DatePopupWindow extends PopupWindow implements android.view.View.On
     private int selectYearIndex, selectMonthIndex, selectDayIndex;
 
     //最大显示文字
-    private static final int MAXTEXTSIZE = 20;
+    private static final int MAXTEXTSIZE = 16;
     //最小显示文字
-    private static final int MINTEXTSIZE = 15;
+    private static final int MINTEXTSIZE = 12;
     private static final int VISIBLEITEMS = 3;
 
     private int specialColor,grayColor;
@@ -86,6 +87,7 @@ public class DatePopupWindow extends PopupWindow implements android.view.View.On
     }
 
     private void init(View view) {
+
         //初始化年、月、日三个选择器
         wvYear = (WheelView) view.findViewById(R.id.yearView);
         wvMonth = (WheelView) view.findViewById(R.id.monthView);
@@ -270,4 +272,5 @@ public class DatePopupWindow extends PopupWindow implements android.view.View.On
             super.showAsDropDown(anchor);
         }
     }
+
 }

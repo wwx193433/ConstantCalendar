@@ -4,7 +4,10 @@
     <string name="open">打开</string>
     <string name="close">关闭</string>
 
+
     <!-- 图标 -->
+    <string name="icon_empty">&#xe6af;</string>
+
     <string name="icon_menu">&#xe601;</string>
     <string name="icon_back">&#xe6d6;</string>
     <string name="icon_confirm">&#xe654;</string>
@@ -16,6 +19,10 @@
     <string name="icon_checked">&#xe6e8;</string>
 
     <string name="icon_right">&#xe600;</string>
+    <string name="icon_music">&#xe633;</string>
+    <string name="icon_ringtone">&#xe605;</string>
+    <string name="icon_should">&#xe614;</string>
+    <string name="icon_avoid">&#xe615;</string>
 
     <string name="icon_holiday">&#xe6db;</string>
     <string name="icon_note">&#xe761;</string>

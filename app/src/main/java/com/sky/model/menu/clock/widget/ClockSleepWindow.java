@@ -1,4 +1,4 @@
-package com.sky.model.menu.widget;
+package com.sky.model.menu.clock.widget;
 
 import android.content.Context;
 import android.os.Build;
@@ -204,7 +204,6 @@ public class ClockSleepWindow extends PopupWindow implements android.view.View.O
     public interface DataInterface{
         void onDataCallBack(boolean sleepOpen, int minute, int times);
     }
-
     public void onSelectData(DataInterface dataInterface){
         this.dataInterface = dataInterface;
     }

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:opensky="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="60dp"
+    android:orientation="horizontal"
+    >
+
+    <com.sky.plug.widget.IconFontTextview
+        android:id="@+id/musicIcon"
+        android:layout_width="50dp"
+        android:layout_height="match_parent"
+        android:textSize="26sp"
+        android:gravity="center"
+        android:text="@string/icon_music" />
+
+    <LinearLayout
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:gravity="center"
+        android:orientation="vertical"
+        >
+        <com.sky.plug.widget.MarqueeTextView
+            android:id="@+id/bell_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:ellipsize="none"
+            android:gravity="left"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:background="@null"
+            android:layout_centerHorizontal="true"
+            />
+        <TextView
+            android:id="@+id/bell_size"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:textColor="@color/gray"
+            android:textSize="12sp"
+            />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/bell_url"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:visibility="gone"
+        />
+
+    <LinearLayout
+        android:layout_width="1dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        >
+        <com.sky.plug.widget.IconFontCheckBox
+            android:id="@+id/checkBtn"
+            android:clickable="false"
+            android:focusable="false"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textSize="18sp"
+            opensky:iconChecked="@string/icon_checked"
+            opensky:iconUncheck="@string/icon_uncheck"
+            opensky:checkedColor="@color/special"
+            android:textColor="@color/gray"
+            android:text=""
+            android:button="@null"
+            />
+    </LinearLayout>
+</LinearLayout>

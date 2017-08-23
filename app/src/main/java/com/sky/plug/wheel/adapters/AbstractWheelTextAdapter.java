@@ -20,7 +20,8 @@ public abstract class AbstractWheelTextAdapter extends AbstractWheelAdapter {
     private ArrayList<View> arrayList = new ArrayList<>();
     private int visibleItems = 5;
     private int itemHeight = 50;
-    Typeface thinFont = Typeface.create(Typeface.SANS_SERIF, Typeface.NORMAL);;
+    Typeface thinFont = Typeface.create(Typeface.SANS_SERIF, Typeface.NORMAL);
+    ;
 
     protected AbstractWheelTextAdapter(Context context) {
         this.context = context;
@@ -38,7 +39,7 @@ public abstract class AbstractWheelTextAdapter extends AbstractWheelAdapter {
         this.font = font;
         this.maxsize = maxsize;
         this.minsize = minsize;
-        if(null!=font && !font.equals("")){
+        if (null != font && !font.equals("")) {
             thinFont = Typeface.create(font, Typeface.NORMAL);
         }
     }
@@ -46,24 +47,25 @@ public abstract class AbstractWheelTextAdapter extends AbstractWheelAdapter {
     public ArrayList<View> getTestViews() {
         return arrayList;
     }
+
     protected abstract CharSequence getItemText(int index);
 
     @Override
     public View getItem(int index, View convertView, ViewGroup parent) {
-
-
         TextView textView = new TextView(context);
         if (!arrayList.contains(textView)) {
             arrayList.add(textView);
         }
-        if(parent.getHeight()>0 && visibleItems>0){
+        if (parent.getHeight() > 0 && visibleItems > 0) {
             itemHeight = parent.getHeight() / visibleItems;
         }
         textView.setHeight(itemHeight);
+
         textView.setGravity(Gravity.CENTER);
         textView.setText(getItemText(index));
         textView.setTypeface(thinFont);
         textView.setTextColor(Color.BLACK);
+
         if (index == currentIndex) {
             textView.setTextSize(maxsize);
         } else {
