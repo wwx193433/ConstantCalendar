@@ -1,6 +1,7 @@
 package com.sky.model.calendar.widget;
 
 import com.sky.util.CalendarUtil;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ import java.util.Map;
 
 /**
  * <b>描述</b>: 日历转换工具类：阴历和阳历日期互换(阴历日期范围19000101~20491229)<br>
+ *
  * @author wwx193433 2015-1-5
  */
 public class LunarCalendar {
@@ -66,26 +68,26 @@ public class LunarCalendar {
             "娄金狗", "胃土彘", "昴日鸡", "毕月乌", "觜火猴", "参水猿", "井木犴", "鬼金羊", "柳土獐", "星日马", "张月鹿", "翼火蛇", "轸水蚓"};
 
     // 农历相关数据
-    private static String tiangan []={"癸","甲","乙","丙","丁","戊","己","庚","辛","壬"};
-    private static String dizhi[] = {"亥","子","丑","寅","卯","辰","巳","午","未","申","酉","戌"};
-    private static String shengxiao[] = {"猪","鼠","牛","虎","兔","龙","蛇","马","羊","猴","鸡","狗"};
-    private static String[] monthString = {"出错", "正月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月",
+    private static String tiangan[] = {"癸", "甲", "乙", "丙", "丁", "戊", "己", "庚", "辛", "壬"};
+    private static String dizhi[] = {"亥", "子", "丑", "寅", "卯", "辰", "巳", "午", "未", "申", "酉", "戌"};
+    private static String shengxiao[] = {"猪", "鼠", "牛", "虎", "兔", "龙", "蛇", "马", "羊", "猴", "鸡", "狗"};
+    private static String[] monthString = {"出错", "正月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "冬月",
             "腊月"};
 
     /**
      * 计算天干地支
      */
-    public String getChineseEra(int year){
-        int i=(year-3)%10;
-        int j=(year-3)%12;
-        return tiangan[i]+dizhi[j];
+    public String getChineseEra(int year) {
+        int i = (year - 3) % 10;
+        int j = (year - 3) % 12;
+        return tiangan[i] + dizhi[j];
     }
 
     /**
      * 计算生肖
      */
-    public String getZodiac(int year){
-        int n=(year-3)%12;
+    public String getZodiac(int year) {
+        int n = (year - 3) % 12;
         return shengxiao[n];
     }
 
@@ -96,7 +98,7 @@ public class LunarCalendar {
      * @return (int)月份
      * @author liu 2015-1-5
      */
-    private static int getLeapMonth(int year) {
+    public static int getLeapMonth(int year) {
         return (int) (LUNAR_INFO[year - 1900] & 0xf);
     }
 
@@ -128,10 +130,7 @@ public class LunarCalendar {
      * @throws Exception
      * @author liu 2015-1-5
      */
-    private static int getMonthDays(int lunarYeay, int month) throws Exception {
-        if ((month > 31) || (month < 0)) {
-            throw (new Exception("月份有错！"));
-        }
+    private static int getMonthDays(int lunarYeay, int month) {
         // 0X0FFFF[0000 {1111 1111 1111} 1111]中间12位代表12个月，1为大月，0为小月
         int bit = 1 << (16 - month);
         if (((LUNAR_INFO[lunarYeay - 1900] & 0x0FFFF) & bit) == 0) {
@@ -236,12 +235,16 @@ public class LunarCalendar {
      * @throws Exception
      * @author liu 2015-1-5
      */
-    public static String lunarToSolar(String lunarDate, boolean leapMonthFlag) throws Exception {
+    public Date lunarToSolar(String lunarDate, boolean leapMonthFlag){
         int lunarYear = Integer.parseInt(lunarDate.substring(0, 4));
         int lunarMonth = Integer.parseInt(lunarDate.substring(4, 6));
         int lunarDay = Integer.parseInt(lunarDate.substring(6, 8));
 
-        checkLunarDate(lunarYear, lunarMonth, lunarDay, leapMonthFlag);
+        try {
+            checkLunarDate(lunarYear, lunarMonth, lunarDay, leapMonthFlag);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         int offset = 0;
 
@@ -252,20 +255,11 @@ public class LunarCalendar {
         // 计算该年闰几月
         int leapMonth = getLeapMonth(lunarYear);
 
-        if (leapMonthFlag & leapMonth != lunarMonth) {
-            throw (new Exception("您输入的闰月标志有误！"));
-        }
-
         // 当年没有闰月或月份早于闰月或和闰月同名的月份
         if (leapMonth == 0 || (lunarMonth < leapMonth) || (lunarMonth == leapMonth && !leapMonthFlag)) {
             for (int i = 1; i < lunarMonth; i++) {
                 int tempMonthDaysCount = getMonthDays(lunarYear, i);
                 offset += tempMonthDaysCount;
-            }
-
-            // 检查日期是否大于最大天
-            if (lunarDay > getMonthDays(lunarYear, lunarMonth)) {
-                throw (new Exception("不合法的农历日期！"));
             }
             offset += lunarDay; // 加上当月的天数
         } else {// 当年有闰月，且月份晚于或等于闰月
@@ -276,32 +270,28 @@ public class LunarCalendar {
             if (lunarMonth > leapMonth) {
                 int temp = getLeapMonthDays(lunarYear); // 计算闰月天数
                 offset += temp; // 加上闰月天数
-
-                if (lunarDay > getMonthDays(lunarYear, lunarMonth)) {
-                    throw (new Exception("不合法的农历日期！"));
-                }
                 offset += lunarDay;
             } else { // 如果需要计算的是闰月，则应首先加上与闰月对应的普通月的天数
                 // 计算月为闰月
                 int temp = getMonthDays(lunarYear, lunarMonth); // 计算非闰月天数
                 offset += temp;
-
-                if (lunarDay > getLeapMonthDays(lunarYear)) {
-                    throw (new Exception("不合法的农历日期！"));
-                }
                 offset += lunarDay;
             }
         }
 
         SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd");
         Date myDate = null;
-        myDate = formatter.parse(START_DATE);
+        try {
+            myDate = formatter.parse(START_DATE);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         Calendar c = Calendar.getInstance();
         c.setTime(myDate);
         c.add(Calendar.DATE, offset);
         myDate = c.getTime();
 
-        return formatter.format(myDate);
+        return myDate;
     }
 
     /**
@@ -375,7 +365,7 @@ public class LunarCalendar {
         day.setLunarMonth(lunarMonth);
         day.setLunarDay(lunarDay);
         day.setLeapYear(leapMonthFlag);
-        day.setLunarChinaMonth((leapMonthFlag & (lunarMonth == leapMonth))?"闰"+monthString[lunarMonth]:monthString[lunarMonth]);
+        day.setLunarChinaMonth((leapMonthFlag & (lunarMonth == leapMonth)) ? "闰" + monthString[lunarMonth] : monthString[lunarMonth]);
         day.setLunarChinaDay(getChinaDayString(lunarDay));
         day.setLeapMonth(leapMonthFlag & (lunarMonth == leapMonth));
         return day;
@@ -475,7 +465,7 @@ public class LunarCalendar {
             } else if (solarTermMap.containsKey(solarTimeKey)) {
                 lunarDay.setSpecailDay(solarTermMap.get(solarTimeKey));
             }
-            lunarDay.setLunarChinaMonth(isLeapMonth?"闰"+monthString[month]:monthString[month]);
+            lunarDay.setLunarChinaMonth(isLeapMonth ? "闰" + monthString[month] : monthString[month]);
             lunarDay.setLunarChinaDay(getChinaDayString(day));
             lunarDays.add(lunarDay);
             day++;
@@ -541,7 +531,6 @@ public class LunarCalendar {
         return solarHolidayMap;
     }
 
-
     public String getChinaDayString(int day) {
         int n = day % 10 == 0 ? 9 : day % 10 - 1;
         if (day > 30)
@@ -552,22 +541,95 @@ public class LunarCalendar {
             return chineseTen[day / 10] + chineseNumber[n];
     }
 
-    public static void main(String[] args) throws Exception {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-        LunarCalendar cu = new LunarCalendar();
-        Date startdate = sdf.parse("20161222");
-        Date enddate = sdf.parse("20180222");
-        List<DayInfo> days = cu.solarToLunar(startdate, enddate);
-        for (DayInfo di : days) {
-            System.out.println(di.toString());
-        }
-    }
-
     public List<DayInfo> getDaysOfThisMonth(Date date) {
         CalendarUtil calendarUtil = new CalendarUtil();
         Date startDate = calendarUtil.getMonthStart(date);
         Date endDate = calendarUtil.getMonthEnd(date);
         List<DayInfo> dates = solarToLunar(startDate, endDate);
         return dates;
+    }
+
+    public List<String> getLunarMonths(int lunarYear) {
+        int count = 12;
+        if(lunarYear == 2099){
+            count = 11;
+        }
+        int leapMonth = getLeapMonth(lunarYear);
+        List<String> months = new ArrayList<>();
+        for (int i = 1; i <= count; i++) {
+            months.add(monthString[i]);
+            if (i == leapMonth) {
+                months.add("闰" + monthString[i]);
+            }
+        }
+        return months;
+    }
+
+    /**
+     * 获取阴历每月天数
+     * @param year
+     * @param monthIndex
+     * @return
+     */
+    public List<String> getLunarMonthDays(int year, int monthIndex) {
+        CalendarUtil calendarUtil = new CalendarUtil();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+        List<String> days = new ArrayList<>();
+        int count = 0;
+        int month = 0;
+        int leapMonth = getLeapMonth(year);
+        if(leapMonth>0){
+            if(monthIndex>=leapMonth){
+                month = monthIndex;
+                if(monthIndex == leapMonth){
+                    count = getLeapMonthDays(year);
+                }else{
+                    count = getMonthDays(year, month);
+                }
+            }else{
+                month = monthIndex+1;
+                count = getLeapMonthDays(year);
+            }
+        }else{
+            month = monthIndex + 1;
+            count = getMonthDays(year, month);
+        }
+        //临界值
+        if(year == 2099 && month == 10){
+            count = 20;
+        }
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.YEAR, year);
+        calendar.set(Calendar.MONTH, month-1);
+        calendar.set(Calendar.DAY_OF_MONTH, 1);
+        String lunarDate = sdf.format(calendar.getTime());
+        Date solarDate = lunarToSolar(lunarDate, (leapMonth > 0) && leapMonth == month);
+        Calendar solarCalendar = Calendar.getInstance();
+        solarCalendar.setTime(solarDate);
+        for(int i= 1;i<=count;i++){
+            String day = getChinaDayString(i);
+            days.add(day+ " " +calendarUtil.getWeekString(solarCalendar));
+            solarCalendar.add(Calendar.DAY_OF_MONTH, 1);
+        }
+        return days;
+    }
+
+    /**
+     * 获取农历日期下标
+     * @param solarDate
+     * @return
+     */
+    public int[] getLunarIndex(Date solarDate) {
+        int ary[] = new int[3];
+        DayInfo dayInfo = solarToLunar(solarDate);
+        ary[0] = dayInfo.getLunarYear() - 1900;
+        int leapMonth = getLeapMonth(dayInfo.getLunarYear());
+        if(dayInfo.isLeapMonth() || dayInfo.getLunarMonth()>leapMonth){
+            ary[1] = dayInfo.getLunarMonth();
+        }else{
+            ary[1] = dayInfo.getLunarMonth()-1;
+        }
+        ary[2] = dayInfo.getLunarDay() -1;
+        return ary;
     }
 }

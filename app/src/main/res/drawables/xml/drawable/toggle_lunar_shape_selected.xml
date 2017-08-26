@@ -5,9 +5,9 @@
     <!--圆角-->
     <corners
         android:topLeftRadius="0dp"
-        android:topRightRadius="2dp"
+        android:topRightRadius="3dp"
         android:bottomLeftRadius="0dp"
-        android:bottomRightRadius="2dp"
+        android:bottomRightRadius="3dp"
         />
     <!--填充颜色-->
     <solid android:color="@color/special" />

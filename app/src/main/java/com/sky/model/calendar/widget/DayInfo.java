@@ -27,12 +27,6 @@ public class DayInfo {
     //是否润月
     private boolean isLeapMonth;
 
-    @Override
-    public String toString() {
-        // TODO Auto-generated method stub
-        return lunarYear + "年" + (isLeapMonth ? "闰" : "") + lunarMonth + "月" + lunarDay + "日" + "特殊节日：" + specailDay;
-    }
-
     public Date getSolarDate() {
         return solarDate;
     }
@@ -103,5 +97,20 @@ public class DayInfo {
 
     public void setLunarChinaMonth(String lunarChinaMonth) {
         this.lunarChinaMonth = lunarChinaMonth;
+    }
+
+    @Override
+    public String toString() {
+        return "DayInfo{" +
+                "solarDate=" + solarDate +
+                ", lunarYear=" + lunarYear +
+                ", lunarMonth=" + lunarMonth +
+                ", lunarDay=" + lunarDay +
+                ", specailDay='" + specailDay + '\'' +
+                ", lunarChinaDay='" + lunarChinaDay + '\'' +
+                ", lunarChinaMonth='" + lunarChinaMonth + '\'' +
+                ", isLeapYear=" + isLeapYear +
+                ", isLeapMonth=" + isLeapMonth +
+                '}';
     }
 }

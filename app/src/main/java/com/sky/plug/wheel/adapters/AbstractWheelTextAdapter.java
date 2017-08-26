@@ -18,7 +18,6 @@ public abstract class AbstractWheelTextAdapter extends AbstractWheelAdapter {
     private int maxsize = 24;
     private int minsize = 14;
     private ArrayList<View> arrayList = new ArrayList<>();
-    private int visibleItems = 5;
     private int itemHeight = 50;
     Typeface thinFont = Typeface.create(Typeface.SANS_SERIF, Typeface.NORMAL);
     ;
@@ -29,10 +28,6 @@ public abstract class AbstractWheelTextAdapter extends AbstractWheelAdapter {
 
     public void setCurrentIndex(int currentIndex) {
         this.currentIndex = currentIndex;
-    }
-
-    public void setVisibleItems(int visibleItems) {
-        this.visibleItems = visibleItems == 0 ? 5 : visibleItems;
     }
 
     public void setStyle(String font, int maxsize, int minsize) {
@@ -56,15 +51,13 @@ public abstract class AbstractWheelTextAdapter extends AbstractWheelAdapter {
         if (!arrayList.contains(textView)) {
             arrayList.add(textView);
         }
-        if (parent.getHeight() > 0 && visibleItems > 0) {
-            itemHeight = parent.getHeight() / visibleItems;
-        }
-        textView.setHeight(itemHeight);
+
+        textView.setHeight(this.itemHeight);
 
         textView.setGravity(Gravity.CENTER);
         textView.setText(getItemText(index));
         textView.setTypeface(thinFont);
-        textView.setTextColor(Color.BLACK);
+        textView.setTextColor(Color.parseColor("#88000000"));
 
         if (index == currentIndex) {
             textView.setTextSize(maxsize);
@@ -72,5 +65,9 @@ public abstract class AbstractWheelTextAdapter extends AbstractWheelAdapter {
             textView.setTextSize(minsize);
         }
         return textView;
+    }
+
+    public void setItemHeight(int itemHeight) {
+        this.itemHeight = itemHeight;
     }
 }

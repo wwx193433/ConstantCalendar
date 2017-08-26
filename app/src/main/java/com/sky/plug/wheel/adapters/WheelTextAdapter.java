@@ -20,11 +20,6 @@ public class WheelTextAdapter extends AbstractWheelTextAdapter {
     }
 
     @Override
-    public void setVisibleItems(int visibleItems) {
-        super.setVisibleItems(visibleItems);
-    }
-
-    @Override
     public void setCurrentIndex(int currentIndex) {
         super.setCurrentIndex(currentIndex);
     }

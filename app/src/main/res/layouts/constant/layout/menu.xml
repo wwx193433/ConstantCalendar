@@ -23,8 +23,6 @@
             android:lineSpacingExtra="3dp"
             android:gravity="center"
             android:text="日历" />
-
-
     </LinearLayout>
     <LinearLayout
         android:id="@+id/attention_btn"

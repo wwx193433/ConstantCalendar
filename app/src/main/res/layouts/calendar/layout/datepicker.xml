@@ -9,79 +9,133 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:orientation="horizontal"
-        android:gravity="center"
+        android:background="@drawable/item_bottom_border"
         >
-
         <TextView
-            android:layout_width="80dp"
-            android:layout_height="28dp"
-            android:gravity="center"
-            android:layout_weight="1"
-            android:text="公历"
-            android:textSize="13sp"
-            android:textColor="@drawable/lunar_button_text"
-            android:background="@drawable/solar_button_selector"
-            android:clickable="true"
-            android:id="@+id/solarbtn" />
-
-        <TextView
-            android:id="@+id/lunarbtn"
-            android:layout_width="80dp"
-            android:layout_height="28dp"
-            android:text="农历"
-            android:gravity="center"
-            android:textSize="13sp"
-            android:clickable="true"
-            android:layout_toRightOf="@+id/solarbtn"
-            android:textColor="@drawable/lunar_button_text"
-            android:background="@drawable/lunar_button_selector"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:text="日期选择"
+            android:textSize="19sp"
+            android:layout_marginLeft="20dp"
+            android:textColor="#88000000"
             />
+
+        <RadioGroup
+            android:layout_width="90dp"
+            android:layout_height="24dp"
+            android:layout_marginRight="20dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:orientation="horizontal" >
+
+            <RadioButton
+                android:id="@+id/solarbtn"
+                android:layout_width="1dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:button="@null"
+                android:gravity="center"
+                android:checked="true"
+                android:textSize="15sp"
+                android:textColor="@drawable/solar_button_text"
+                android:background="@drawable/solar_button_selector"
+                android:text="公历" />
+            <RadioButton
+                android:id="@+id/lunarbtn"
+                android:layout_width="1dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:button="@null"
+                android:gravity="center"
+                android:textSize="15sp"
+                android:checked="false"
+                android:textColor="@drawable/lunar_button_text"
+                android:background="@drawable/lunar_button_selector"
+                android:text="农历" />
+        </RadioGroup>
     </RelativeLayout>
+
     <LinearLayout
+        android:id="@+id/wv_solar"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="120dp"
         android:orientation="horizontal"
+        android:visibility="visible"
         android:gravity="center_vertical">
         <com.sky.plug.wheel.views.WheelView
-            android:id="@+id/yearView"
+            android:id="@+id/solarYearView"
             android:layout_width="0dip"
             android:layout_weight="2"
-            android:layout_height="150dp"
+            android:layout_height="120dp"
             android:layout_gravity="center_vertical"
             />
         <com.sky.plug.wheel.views.WheelView
-            android:id="@+id/monthView"
+            android:id="@+id/solarMonthView"
             android:layout_width="0dip"
             android:layout_weight="2"
-            android:layout_height="150dp"
+            android:layout_height="120dp"
             android:layout_gravity="center_vertical"
             />
         <com.sky.plug.wheel.views.WheelView
-            android:id="@+id/dayView"
+            android:id="@+id/solarDayView"
             android:layout_width="0dip"
             android:layout_weight="3"
-            android:layout_height="150dp"
+            android:layout_height="120dp"
             android:layout_gravity="center_vertical"
             />
     </LinearLayout>
     <LinearLayout
+        android:id="@+id/wv_lunar"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="120dp"
         android:orientation="horizontal"
+        android:visibility="gone"
+        android:gravity="center_vertical">
+        <com.sky.plug.wheel.views.WheelView
+            android:id="@+id/lunarYearView"
+            android:layout_width="0dip"
+            android:layout_weight="2"
+            android:layout_height="120dp"
+            android:layout_gravity="center_vertical"
+            />
+        <com.sky.plug.wheel.views.WheelView
+            android:id="@+id/lunarMonthView"
+            android:layout_width="0dip"
+            android:layout_weight="2"
+            android:layout_height="120dp"
+            android:layout_gravity="center_vertical"
+            />
+        <com.sky.plug.wheel.views.WheelView
+            android:id="@+id/lunarDayView"
+            android:layout_width="0dip"
+            android:layout_weight="3"
+            android:layout_height="120dp"
+            android:layout_gravity="center_vertical"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:background="@drawable/item_top_border"
         >
 
-        <TextView
-            android:id="@+id/date_select_cancel"
+        <Button
+            android:id="@+id/date_select_today"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
             android:textSize="18sp"
             android:textColor="@color/gray"
-            android:text="取消"
+            android:background="@null"
+            android:text="回到今天"
             />
 
-        <TextView
+        <Button
             android:id="@+id/date_select_confirm"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -89,6 +143,7 @@
             android:gravity="center"
             android:textSize="18sp"
             android:textColor="@color/special"
+            android:background="@null"
             android:text="确定"
             />
     </LinearLayout>

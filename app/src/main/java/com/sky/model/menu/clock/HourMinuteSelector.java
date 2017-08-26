@@ -3,7 +3,6 @@ package com.sky.model.menu.clock;
 import android.app.Activity;
 
 import com.sky.constantcalendar.R;
-import com.sky.plug.wheel.adapters.WheelTextAdapter;
 import com.sky.plug.wheel.views.OnWheelChangedListener;
 import com.sky.plug.wheel.views.WheelView;
 
@@ -16,6 +15,7 @@ import java.util.List;
  */
 public class HourMinuteSelector {
 
+    private static final int ITEM_HEIGHT = 150;
     private Activity activity;
 
     DecimalFormat df = new DecimalFormat("00");
@@ -24,9 +24,6 @@ public class HourMinuteSelector {
 
     private WheelView wvHour;
     private WheelView wvMinute;
-
-    private WheelTextAdapter mHourAdapter;
-    private WheelTextAdapter mMinuteAdapter;
 
     //选中的时分
     private int selectHourIndex, selectMinuteIndex;
@@ -67,30 +64,20 @@ public class HourMinuteSelector {
 
     public void setHour() {
         initHours();
-        mHourAdapter = new WheelTextAdapter(activity, hours);
-        mHourAdapter.setStyle("sans-serif-thin", MAXTEXTSIZE, MINTEXTSIZE);
-        mHourAdapter.setVisibleItems(VISIBLEITEMS);
-        mHourAdapter.setCurrentIndex(selectHourIndex);
-
         wvHour.setVisibleItems(VISIBLEITEMS);
         wvHour.setCyclic(true);
-        wvHour.setStyle(MAXTEXTSIZE, MINTEXTSIZE);
-        wvHour.setViewAdapter(mHourAdapter);
-        wvHour.setCurrentItem(selectHourIndex);
+        wvHour.setItemHeight(ITEM_HEIGHT);
+        wvHour.setStyle("sans-serif-thin", MAXTEXTSIZE, MINTEXTSIZE);
+        wvHour.loadData(activity, hours, selectHourIndex);
     }
 
     private void setMinute() {
         initMinutes();
-        mMinuteAdapter = new WheelTextAdapter(activity, minutes);
-        mMinuteAdapter.setStyle("sans-serif-thin", MAXTEXTSIZE, MINTEXTSIZE);
-        mMinuteAdapter.setVisibleItems(VISIBLEITEMS);
-        mMinuteAdapter.setCurrentIndex(selectMinuteIndex);
-
         wvMinute.setVisibleItems(VISIBLEITEMS);
         wvMinute.setCyclic(true);
-        wvMinute.setStyle(MAXTEXTSIZE, MINTEXTSIZE);
-        wvMinute.setViewAdapter(mMinuteAdapter);
-        wvMinute.setCurrentItem(selectMinuteIndex);
+        wvMinute.setItemHeight(ITEM_HEIGHT);
+        wvMinute.setStyle("sans-serif-thin", MAXTEXTSIZE, MINTEXTSIZE);
+        wvMinute.loadData(activity, minutes, selectMinuteIndex);
     }
 
     //初始化小时

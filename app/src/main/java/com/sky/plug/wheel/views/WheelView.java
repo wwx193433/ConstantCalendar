@@ -35,6 +35,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.sky.constantcalendar.R;
+import com.sky.plug.wheel.adapters.WheelTextAdapter;
 import com.sky.plug.wheel.adapters.WheelViewAdapter;
 
 import java.util.LinkedList;
@@ -60,6 +61,8 @@ public class WheelView extends View {
 
 	/** Default count of visible items */
 	private static final int DEF_VISIBLE_ITEMS = 5;
+
+	private String font = "";
 
 	// Wheel Values
 	private int currentItem = 0;
@@ -93,7 +96,7 @@ public class WheelView extends View {
 	private LinearLayout itemsLayout;
 
 	// The number of first item in layout
-	private int firstItem;
+	private int firstItem = 0;
 
 	// View adapter
 	private WheelViewAdapter viewAdapter;
@@ -130,7 +133,8 @@ public class WheelView extends View {
 		});
 	}
 
-	public void setStyle(int maxSize, int minSize){
+	public void setStyle(String font, int maxSize, int minSize){
+		this.font = font;
 		this.maxSize = maxSize;
 		this.minSize = minSize;
 	}
@@ -400,6 +404,7 @@ public class WheelView extends View {
 			}
 		}
 		if (index != currentItem) {
+
 			if (animated) {
 				int itemsToScroll = index - currentItem;
 				if (isCyclic) {
@@ -411,7 +416,6 @@ public class WheelView extends View {
 				scroll(itemsToScroll, 0);
 			} else {
 				scrollingOffset = 0;
-
 				int old = currentItem;
 				currentItem = index;
 
@@ -466,6 +470,8 @@ public class WheelView extends View {
 				itemsLayout.removeAllViews();
 			}
 			scrollingOffset = 0;
+
+
 		} else if (itemsLayout != null) {
 			// cache all items
 			recycle.recycleItems(itemsLayout, firstItem, new ItemsRange());
@@ -613,7 +619,6 @@ public class WheelView extends View {
 	@Override
 	protected void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
-
 		if (viewAdapter != null && viewAdapter.getItemsCount() > 0) {
 			updateView();
 
@@ -662,7 +667,7 @@ public class WheelView extends View {
 		TextView tv1= ((TextView)itemsLayout.getChildAt(1));
 		TextView tv2= ((TextView)itemsLayout.getChildAt(2));
 
-		tv1.setTextSize((maxSize+(dh/rate))>minSize?(maxSize+(dh/rate)):minSize);
+		tv1.setTextSize((maxSize + (dh / rate)) > minSize ? (maxSize + (dh / rate)) : minSize);
 		tv2.setTextSize((minSize - (dh / rate)) < maxSize ? (minSize - (dh / rate)) : maxSize);
 		if(dh == 0){
 			tv0.setTextSize(minSize);
@@ -830,8 +835,10 @@ public class WheelView extends View {
 	 * @return true if items are rebuilt
 	 */
 	private boolean rebuildItems() {
+
 		boolean updated = false;
 		ItemsRange range = getItemsRange();
+
 		if (itemsLayout != null) {
 			int first = recycle.recycleItems(itemsLayout, firstItem, range);
 			updated = firstItem != first;
@@ -844,7 +851,6 @@ public class WheelView extends View {
 		if (!updated) {
 			updated = firstItem != range.getFirst() || itemsLayout.getChildCount() != range.getCount();
 		}
-
 		if (firstItem > range.getFirst() && firstItem <= range.getLast()) {
 			for (int i = firstItem - 1; i >= range.getFirst(); i--) {
 				if (!addViewItem(i, true)) {
@@ -855,7 +861,6 @@ public class WheelView extends View {
 		} else {
 			firstItem = range.getFirst();
 		}
-
 		int first = firstItem;
 		for (int i = itemsLayout.getChildCount(); i < range.getCount(); i++) {
 			if (!addViewItem(firstItem + i, false) && itemsLayout.getChildCount() == 0) {
@@ -863,7 +868,6 @@ public class WheelView extends View {
 			}
 		}
 		firstItem = first;
-
 		return updated;
 	}
 
@@ -898,13 +902,13 @@ public class WheelView extends View {
 		} else {
 			createItemsLayout();
 		}
-
 		// add views
 		int addItems = visibleItems / 2;
 		for (int i = currentItem + addItems; i >= currentItem - addItems; i--) {
 			if (addViewItem(i, true)) {
 			}
 		}
+		firstItem = currentItem - addItems;
 	}
 
 	/**
@@ -972,5 +976,18 @@ public class WheelView extends View {
 	 */
 	public void stopScrolling() {
 		scroller.stopScrolling();
+	}
+
+	public void loadData(Context context, List<String> list, int index) {
+		WheelTextAdapter adapter = new WheelTextAdapter(context, list);
+//		adapter.setCurrentIndex(index);
+		adapter.setStyle(this.font, (int) maxSize, (int) minSize);
+		adapter.setItemHeight(this.itemHeight);
+		this.setViewAdapter(adapter);
+		this.setCurrentItem(index);
+	}
+
+	public void setItemHeight(int itemHeight) {
+		this.itemHeight = itemHeight;
 	}
 }

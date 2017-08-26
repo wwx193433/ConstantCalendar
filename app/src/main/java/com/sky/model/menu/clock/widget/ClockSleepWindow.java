@@ -21,6 +21,7 @@ import java.util.ArrayList;
  */
 public class ClockSleepWindow extends PopupWindow implements android.view.View.OnClickListener {
 
+    private static final int ITEM_HEIGHT = 150;
     private Context context;
     private WheelView wvMinute;
     private WheelView wvTimes;
@@ -124,30 +125,20 @@ public class ClockSleepWindow extends PopupWindow implements android.view.View.O
 
     public void setMinute() {
         initMinutes();
-        mMinuteAdapter = new WheelTextAdapter(context, minuteList);
-        mMinuteAdapter.setCurrentIndex(selectMinuteIndex);
-        mMinuteAdapter.setStyle("sans-serif-thin", MAXTEXTSIZE, MINTEXTSIZE);
-        mMinuteAdapter.setVisibleItems(VISIBLEITEMS);
-
         wvMinute.setVisibleItems(VISIBLEITEMS);
         wvMinute.setCyclic(true);
-        wvMinute.setStyle(MAXTEXTSIZE,MINTEXTSIZE);
-        wvMinute.setViewAdapter(mMinuteAdapter);
-        wvMinute.setCurrentItem(selectMinuteIndex);
+        wvMinute.setItemHeight(ITEM_HEIGHT);
+        wvMinute.setStyle("sans-serif-thin", MAXTEXTSIZE, MINTEXTSIZE);
+        wvMinute.loadData(context, minuteList, selectMinuteIndex);
     }
 
     public void setTimes() {
         initTimes();
-        mTimesAdapter = new WheelTextAdapter(context, timesList);
-        mTimesAdapter.setCurrentIndex(selectTimesIndex);
-        mTimesAdapter.setStyle("sans-serif-thin", MAXTEXTSIZE, MINTEXTSIZE);
-        mTimesAdapter.setVisibleItems(VISIBLEITEMS);
-
         wvTimes.setVisibleItems(VISIBLEITEMS);
         wvTimes.setCyclic(true);
-        wvTimes.setStyle(MAXTEXTSIZE, MINTEXTSIZE);
-        wvTimes.setViewAdapter(mTimesAdapter);
-        wvTimes.setCurrentItem(selectTimesIndex);
+        wvTimes.setItemHeight(ITEM_HEIGHT);
+        wvTimes.setStyle("sans-serif-thin", MAXTEXTSIZE, MINTEXTSIZE);
+        wvTimes.loadData(context, timesList, selectTimesIndex);
     }
 
     public void initMinutes() {
