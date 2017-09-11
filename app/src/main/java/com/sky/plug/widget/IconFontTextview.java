@@ -79,7 +79,20 @@ public class IconFontTextview extends TextView {
 
         //获取文字
         String text = this.getText().toString();
+        setIconText(text);
+        a.recycle();  //注意回收
+    }
 
+    public IconFontTextview(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+        init(context);
+    }
+    private void init(Context context){
+        Typeface iconfont = Typeface.createFromAsset(context.getAssets(), "iconfont/iconfont.ttf");
+        setTypeface(iconfont);
+    }
+
+    public void setIconText(String text) {
         switch(num){
             case 0:// 上
                 content = icon+"\n"+text;
@@ -114,16 +127,13 @@ public class IconFontTextview extends TextView {
         builder.setSpan(new AbsoluteSizeSpan((int) iconSize), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         builder.setSpan(new ForegroundColorSpan(iconColor), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         this.setText(builder);
-        a.recycle();  //注意回收
     }
 
-    public IconFontTextview(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-        init(context);
-    }
-    private void init(Context context){
-        Typeface iconfont = Typeface.createFromAsset(context.getAssets(), "iconfont/iconfont.ttf");
-        setTypeface(iconfont);
+    public void setIconTextColor(int color){
+        SpannableStringBuilder builder = new SpannableStringBuilder(content);
+        builder.setSpan(new AbsoluteSizeSpan((int) iconSize), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        builder.setSpan(new ForegroundColorSpan(color), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        this.setText(builder);
     }
 
     @Override

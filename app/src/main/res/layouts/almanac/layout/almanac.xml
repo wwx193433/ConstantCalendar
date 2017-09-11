@@ -1,0 +1,847 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:opensky="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/special"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <!-- 头部状态栏 -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/special">
+
+        <com.sky.plug.widget.IconFontTextview
+            android:id="@+id/icon_back"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:gravity="center"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="@string/icon_back"
+            android:textColor="@color/white"
+            android:textSize="22sp" />
+
+        <com.sky.plug.widget.IconFontTextview
+            android:id="@+id/am_solarDate"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="2017-05-26"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            opensky:iconRight="@string/icon_down"
+            opensky:iconSize="20sp" />
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:id="@+id/homeScroller"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#f6f6f6"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp">
+
+                <com.sky.plug.widget.IconFontTextview
+                    android:id="@+id/am_lunar_yestoday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentLeft="true"
+                    android:gravity="center"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:text="@string/icon_last"
+                    android:textColor="@color/special"
+                    android:textSize="36sp" />
+
+                <com.sky.plug.widget.FangzhengFontTextView
+                    android:id="@+id/am_lunarDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:text="七月初六"
+                    android:textColor="@color/special"
+                    android:textSize="36sp" />
+
+                <com.sky.plug.widget.IconFontTextview
+                    android:id="@+id/am_lunar_tomorrow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:text="@string/icon_next"
+                    android:textColor="@color/special"
+                    android:textSize="36sp" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/am_ganzhi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingBottom="10dp"
+                android:text="丁酉鸡年 丁未月 甲寅日 星期六"
+                android:textSize="15sp" />
+
+            <!-- 占卜 宜忌 -->
+            <LinearLayout
+                android:id="@+id/ll_yiji"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/lightOrange"
+                android:orientation="vertical"
+                android:paddingTop="1dp">
+
+                <com.sky.plug.widget.IconFontTextview
+                    android:id="@+id/am_yi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:ellipsize="end"
+                    android:gravity="left"
+                    android:paddingBottom="5dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingTop="10dp"
+                    android:singleLine="true"
+                    android:text="嫁娶 纳彩 订盟 祭祀 开光 出行 理发 动土 安床 放水 开渠 栽种 进口"
+                    android:textColor="@color/green"
+                    android:textSize="14sp"
+                    opensky:iconColor="@color/green"
+                    opensky:iconLeft="@string/icon_should"
+                    opensky:iconSize="14sp" />
+
+                <com.sky.plug.widget.IconFontTextview
+                    android:id="@+id/am_ji"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:ellipsize="end"
+                    android:gravity="left"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingTop="5dp"
+                    android:singleLine="true"
+                    android:text="入宅 上梁 入殓 盖屋 探病 做灶 安门 安葬 纳畜 伐木 探病 做灶"
+                    android:textColor="@color/red"
+                    android:textSize="14sp"
+                    opensky:iconColor="@color/red"
+                    opensky:iconLeft="@string/icon_avoid"
+                    opensky:iconSize="14sp" />
+
+            </LinearLayout>
+
+            <!-- 黄历 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/lightOrange"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="1dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3"
+                        android:orientation="vertical">
+
+                        <!-- 五行 -->
+                        <LinearLayout
+                            android:id="@+id/ll_wuxing"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/white"
+                            android:orientation="vertical"
+                            android:padding="5dp">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="五行"
+                                android:textColor="@color/soil" />
+
+                            <TextView
+                                android:id="@+id/am_wuxing"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="屋上土" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/ll_jc"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="1dp"
+                            android:background="@color/white"
+                            android:orientation="vertical"
+                            android:padding="5dp">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="建除十二神"
+                                android:textColor="@color/soil" />
+
+                            <TextView
+                                android:id="@+id/am_sheng12"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="除神" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/ll_js"
+                            android:layout_width="match_parent"
+                            android:layout_height="fill_parent"
+                            android:layout_marginTop="1dp"
+                            android:background="@color/white"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical"
+                            android:padding="5dp">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="吉神宜趋"
+                                android:textColor="@color/soil" />
+
+                            <TextView
+                                android:id="@+id/am_jsyq"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="月德 天恩" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_lp"
+                        android:layout_width="0dp"
+                        android:layout_height="190dp"
+                        android:layout_marginLeft="1dp"
+                        android:layout_marginRight="1dp"
+                        android:layout_weight="5"
+                        android:background="@color/white"
+                        android:orientation="vertical">
+
+                        <FrameLayout
+                            android:id="@+id/round_frame"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_weight="5"
+                            android:gravity="center"
+                            android:padding="5dp">
+
+                            <ImageView
+                                android:id="@+id/roundImage"
+                                android:layout_width="fill_parent"
+                                android:layout_height="fill_parent"
+                                android:layout_gravity="center"
+                                android:scaleType="fitCenter"
+                                android:src="@drawable/img_round" />
+
+                            <ImageView
+                                android:id="@+id/pointerImage"
+                                android:layout_width="44dp"
+                                android:layout_height="44dp"
+                                android:layout_gravity="center"
+                                android:background="@drawable/img_pointer"
+                                android:scaleType="fitCenter" />
+                        </FrameLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <com.sky.plug.widget.IconFontTextview
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:text="@string/icon_cai"
+                                android:textColor="@color/soil"
+                                android:textSize="16sp" />
+
+                            <TextView
+                                android:id="@+id/am_cai"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:paddingLeft="3dp"
+                                android:paddingRight="3dp"
+                                android:text="正东"
+                                android:textSize="13sp" />
+
+                            <com.sky.plug.widget.IconFontTextview
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="10dp"
+                                android:gravity="center"
+                                android:text="@string/icon_xi"
+                                android:textColor="@color/soil"
+                                android:textSize="16sp" />
+
+                            <TextView
+                                android:id="@+id/am_xi"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:paddingLeft="3dp"
+                                android:paddingRight="3dp"
+                                android:text="西南"
+                                android:textSize="13sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3"
+                        android:orientation="vertical"
+                        android:paddingRight="1dp">
+
+                        <LinearLayout
+                            android:id="@+id/ll_zs"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/white"
+                            android:orientation="vertical"
+                            android:padding="5dp">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="值神"
+                                android:textColor="@color/soil" />
+
+                            <TextView
+                                android:id="@+id/am_zhiri"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="玄武" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/ll_cs"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="1dp"
+                            android:background="@color/white"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical"
+                            android:padding="5dp">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="冲煞"
+                                android:textColor="@color/soil" />
+
+                            <TextView
+                                android:id="@+id/am_chongsha"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="鸡日冲兔 煞冬" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/ll_ts"
+                            android:layout_width="match_parent"
+                            android:layout_height="fill_parent"
+                            android:layout_marginTop="1dp"
+                            android:background="@color/white"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical"
+                            android:padding="5dp">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="胎神吉方"
+                                android:textColor="@color/soil" />
+
+                            <TextView
+                                android:id="@+id/am_tszf"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="占门床外正南" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_jrhh"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/lightOrange"
+                    android:orientation="horizontal"
+                    android:paddingTop="1dp">
+                    <!-- 今日合害 -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="1dp"
+                        android:background="@color/white"
+                        android:gravity="center"
+                        android:padding="5dp"
+                        android:text="今日\n合害"
+                        android:textColor="@color/soil" />
+
+                    <TextView
+                        android:id="@+id/am_jrhh"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/white"
+                        android:gravity="center_vertical"
+                        android:padding="5dp"
+                        android:text="今日与属龙属猴半三合，与属牛六合，与属马相冲，与属羊相害，与属兔相刑" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_pzbj"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/lightOrange"
+                    android:orientation="horizontal"
+                    android:paddingTop="1dp">
+                    <!-- 彭祖百忌 -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="1dp"
+                        android:background="@color/white"
+                        android:gravity="center"
+                        android:padding="5dp"
+                        android:text="彭祖\n百忌"
+                        android:textColor="@color/soil" />
+
+                    <TextView
+                        android:id="@+id/am_pzbj"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/white"
+                        android:gravity="center_vertical"
+                        android:padding="5dp"
+                        android:text="戊不受田田主不祥 子不问卜自惹祸殃" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_scyj"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/lightOrange"
+                    android:orientation="horizontal"
+                    android:paddingBottom="1dp"
+                    android:paddingTop="1dp">
+                    <!-- 时辰宜忌 -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="1dp"
+                        android:background="@color/white"
+                        android:gravity="center"
+                        android:padding="5dp"
+                        android:text="时辰\n宜忌"
+                        android:textColor="@color/soil" />
+
+                    <LinearLayout
+                        android:id="@+id/scLayout"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:background="@color/white"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingBottom="2dp"
+                                android:paddingTop="5dp"
+                                android:text="子" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="丨"
+                                android:textColor="@color/middleGray" />
+
+                            <TextView
+                                android:id="@+id/am_zishi"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingBottom="5dp"
+                                android:paddingTop="2dp"
+                                android:text="凶" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingBottom="2dp"
+                                android:paddingTop="5dp"
+                                android:text="丑" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="丨"
+                                android:textColor="@color/middleGray" />
+
+                            <TextView
+                                android:id="@+id/am_choushi"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingBottom="5dp"
+                                android:paddingTop="2dp"
+                                android:text="凶" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingBottom="2dp"
+                                android:paddingTop="5dp"
+                                android:text="寅" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="丨"
+                                android:textColor="@color/middleGray" />
+
+                            <TextView
+                                android:id="@+id/am_yinshi"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingBottom="5dp"
+                                android:paddingTop="2dp"
+                                android:text="吉" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingBottom="2dp"
+                                android:paddingTop="5dp"
+                                android:text="卯" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="丨"
+                                android:textColor="@color/middleGray" />
+
+                            <TextView
+                                android:id="@+id/am_maoshi"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingBottom="5dp"
+                                android:paddingTop="2dp"
+                                android:text="凶" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingBottom="2dp"
+                                android:paddingTop="5dp"
+                                android:text="辰" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="丨"
+                                android:textColor="@color/middleGray" />
+
+                            <TextView
+                                android:id="@+id/am_chenshi"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingBottom="5dp"
+                                android:paddingTop="2dp"
+                                android:text="吉" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingBottom="2dp"
+                                android:paddingTop="5dp"
+                                android:text="巳" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="丨"
+                                android:textColor="@color/middleGray" />
+
+                            <TextView
+                                android:id="@+id/am_sishi"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingBottom="5dp"
+                                android:paddingTop="2dp"
+                                android:text="凶" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingBottom="2dp"
+                                android:paddingTop="5dp"
+                                android:text="午" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="丨"
+                                android:textColor="@color/middleGray" />
+
+                            <TextView
+                                android:id="@+id/am_wushi"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingBottom="5dp"
+                                android:paddingTop="2dp"
+                                android:text="凶" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingBottom="2dp"
+                                android:paddingTop="5dp"
+                                android:text="未" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="丨"
+                                android:textColor="@color/middleGray" />
+
+                            <TextView
+                                android:id="@+id/am_weishi"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingBottom="5dp"
+                                android:paddingTop="2dp"
+                                android:text="吉" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingBottom="2dp"
+                                android:paddingTop="5dp"
+                                android:text="申" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="丨"
+                                android:textColor="@color/middleGray" />
+
+                            <TextView
+                                android:id="@+id/am_shenshi"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingBottom="5dp"
+                                android:paddingTop="2dp"
+                                android:text="吉" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingBottom="2dp"
+                                android:paddingTop="5dp"
+                                android:text="酉" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="丨"
+                                android:textColor="@color/middleGray" />
+
+                            <TextView
+                                android:id="@+id/am_youshi"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingBottom="5dp"
+                                android:paddingTop="2dp"
+                                android:text="吉" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingBottom="2dp"
+                                android:paddingTop="5dp"
+                                android:text="戌" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="丨"
+                                android:textColor="@color/middleGray" />
+
+                            <TextView
+                                android:id="@+id/am_xushi"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingBottom="5dp"
+                                android:paddingTop="2dp"
+                                android:text="凶" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingBottom="2dp"
+                                android:paddingTop="5dp"
+                                android:text="亥" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="丨"
+                                android:textColor="@color/middleGray" />
+
+                            <TextView
+                                android:id="@+id/am_haishi"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingBottom="5dp"
+                                android:paddingTop="2dp"
+                                android:text="凶" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+            <!-- 黄历结束 -->
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

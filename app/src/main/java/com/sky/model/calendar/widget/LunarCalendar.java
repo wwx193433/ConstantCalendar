@@ -361,6 +361,7 @@ public class LunarCalendar {
         lunarMonth = i;
         lunarDay = offset;
         DayInfo day = new DayInfo();
+        day.setSolarDate(solarDate);
         day.setLunarYear(lunarYear);
         day.setLunarMonth(lunarMonth);
         day.setLunarDay(lunarDay);
@@ -631,5 +632,22 @@ public class LunarCalendar {
         }
         ary[2] = dayInfo.getLunarDay() -1;
         return ary;
+    }
+
+    /**
+     * 获取日期类
+     * @param solarDateString
+     * @return
+     */
+    public DayInfo getDayInfoBySolarDate(String solarDateString) {
+        DayInfo dayInfo = null;
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            Date solarDate = sdf.parse(solarDateString);
+            dayInfo = solarToLunar(solarDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return dayInfo;
     }
 }

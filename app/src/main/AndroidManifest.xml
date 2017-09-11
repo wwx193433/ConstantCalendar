@@ -64,6 +64,19 @@
             android:launchMode="singleTask"
             android:taskAffinity=""
             android:theme="@android:style/Theme.Wallpaper.NoTitleBar" />
+
+        <activity android:name="com.sky.model.menu.almanac.AlmanacActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/TranslucentTheme"/>
+        <activity android:name="com.sky.model.menu.almanac.AlmanacInfoActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/TranslucentTheme"/>
+        <activity android:name="com.sky.model.menu.almanac.ShichenActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/TranslucentTheme"/>
+        <activity android:name="com.sky.model.menu.almanac.RoundActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/TranslucentTheme"/>
     </application>
 
 </manifest>

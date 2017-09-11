@@ -25,7 +25,7 @@ import java.util.Date;
 public class CalendarHeadSelector {
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
     private Activity activity;
-    private LinearLayout headDate;;
+    private LinearLayout headDate;
     private CalendarUtil calendarUtil;
     private TextView solar_text, lunar_text, dv_solar_date, dv_week;
     private View view;

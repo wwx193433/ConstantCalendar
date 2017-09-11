@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Annotation>
+    <items>
+        <item name = "宜">
+            <type>0</type>
+            <sub-items>
+                <item name = "嫁娶"></item>
+                <item name = "订盟"></item>
+            </sub-items>
+        </item>
+        <item name = "忌">
+            <type>1</type>
+            <sub-items>
+                <item name = "祈福"></item>
+                <item name = "安葬"></item>
+            </sub-items>
+        </item>
+        <item name = "五行">
+            <type>2</type>
+            <sub-items>
+                <item name = "屋上土"></item>
+            </sub-items>
+        </item>
+        <item name = "建除十二神">
+            <type>3</type>
+            <sub-items>
+                <item name = "开执位"></item>
+            </sub-items>
+        </item>
+    </items>
+
+</Annotation>

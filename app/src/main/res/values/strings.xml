@@ -4,12 +4,17 @@
     <string name="open">打开</string>
     <string name="close">关闭</string>
 
-
     <!-- 图标 -->
     <string name="icon_empty">&#xe6af;</string>
 
     <string name="icon_menu">&#xe601;</string>
-    <string name="icon_back">&#xe6d6;</string>
+    <string name="icon_back">&#xe726;</string>
+    <string name="icon_share">&#xe61f;</string>
+    <string name="icon_down">&#xe653;</string>
+    <string name="icon_double_left">&#xe60a;</string>
+    <string name="icon_double_right">&#xe609;</string>
+    <string name="icon_last">&#xe60e;</string>
+    <string name="icon_next">&#xe612;</string>
     <string name="icon_confirm">&#xe654;</string>
     <string name="icon_active">&#xe6d2;</string>
     <string name="icon_light">&#xe616;</string>
@@ -29,6 +34,8 @@
     <string name="icon_clock">&#xe619;</string>
     <string name="icon_comment">&#xe643;</string>
     <string name="icon_setting">&#xe69d;</string>
+    <string name="icon_xi">&#xe617;</string>
+    <string name="icon_cai">&#xe613;</string>
 
 
     <string name="icon_calendar">&#xe6db;</string>

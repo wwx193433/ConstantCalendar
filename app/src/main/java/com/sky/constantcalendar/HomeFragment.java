@@ -13,6 +13,7 @@ import com.sky.model.calendar.CalendarDrawerMenu;
 import com.sky.model.calendar.CalendarHeadSelector;
 import com.sky.model.calendar.CalendarPagerAdapter;
 import com.sky.model.calendar.CalendarViewPager;
+import com.sky.model.menu.almanac.AlmanacManager;
 import com.sky.model.menu.clock.ClockManager;
 
 public class HomeFragment extends Fragment {
@@ -38,6 +39,11 @@ public class HomeFragment extends Fragment {
         calendarPager.setView(view);
         calendarPager.setPagerAdapter(calendarPagerAdapter);
         calendarPager.init();
+
+        //黄历数据
+        AlmanacManager almanacManager = new AlmanacManager(activity);
+        almanacManager.setView(view);
+        almanacManager.init();
 
         //右部滑出菜单控制
         CalendarDrawerMenu calendarDrawerMenu = new CalendarDrawerMenu(this, activity);

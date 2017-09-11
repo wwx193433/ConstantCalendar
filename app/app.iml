@@ -21,7 +21,7 @@
         <option name="ALLOW_USER_CONFIGURATION" value="false" />
         <option name="MANIFEST_FILE_RELATIVE_PATH" value="/src/main/AndroidManifest.xml" />
         <option name="RES_FOLDER_RELATIVE_PATH" value="/src/main/res/layouts/constant" />
-        <option name="RES_FOLDERS_RELATIVE_PATH" value="file://$MODULE_DIR$/src/main/res/drawables/xml;file://$MODULE_DIR$/src/main/res/drawables;file://$MODULE_DIR$/src/main/res/drawables/images;file://$MODULE_DIR$/src/main/res/layouts/clock;file://$MODULE_DIR$/src/main/res/layouts/divine;file://$MODULE_DIR$/src/main/res/layouts/constant;file://$MODULE_DIR$/src/main/res/layouts/calendar;file://$MODULE_DIR$/src/main/res;file://$MODULE_DIR$/src/main/res/layouts" />
+        <option name="RES_FOLDERS_RELATIVE_PATH" value="file://$MODULE_DIR$/src/main/res/drawables/xml;file://$MODULE_DIR$/src/main/res/drawables;file://$MODULE_DIR$/src/main/res/drawables/images;file://$MODULE_DIR$/src/main/res/layouts/clock;file://$MODULE_DIR$/src/main/res/layouts/constant;file://$MODULE_DIR$/src/main/res/layouts/calendar;file://$MODULE_DIR$/src/main/res;file://$MODULE_DIR$/src/main/res/layouts;file://$MODULE_DIR$/src/main/res/layouts/almanac" />
         <option name="ASSETS_FOLDER_RELATIVE_PATH" value="/src/main/assets" />
       </configuration>
     </facet>
@@ -53,7 +53,7 @@
       <sourceFolder url="file://$MODULE_DIR$/src/main/res/layouts/constant" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/res/layouts/calendar" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/res/layouts/clock" type="java-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/main/res/layouts/divine" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/main/res/layouts/almanac" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/res/layouts" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/res/drawables/images" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/res/drawables/xml" type="java-resource" />
@@ -105,6 +105,7 @@
     <orderEntry type="jdk" jdkName="Android API 23 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="library-1.0.1" level="project" />
+    <orderEntry type="library" exported="" name="showapi_sdk" level="project" />
     <orderEntry type="library" exported="" name="design-23.4.0" level="project" />
     <orderEntry type="library" exported="" name="appcompat-v7-23.4.0" level="project" />
     <orderEntry type="library" exported="" name="support-annotations-23.4.0" level="project" />

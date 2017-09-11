@@ -8,6 +8,7 @@
     android:layout_marginLeft="1dp"
     android:layout_marginRight="1dp"
     android:layout_marginTop="5dp"
+    android:id="@+id/almanac_layout"
     >
 
     <LinearLayout
