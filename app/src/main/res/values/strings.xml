@@ -36,6 +36,9 @@
     <string name="icon_setting">&#xe69d;</string>
     <string name="icon_xi">&#xe617;</string>
     <string name="icon_cai">&#xe613;</string>
+    <string name="icon_pwd">&#xe6c2;</string>
+    <string name="icon_mobile">&#xe63d;</string>
+    <string name="icon_vcode">&#xe8ee;</string>
 
 
     <string name="icon_calendar">&#xe6db;</string>

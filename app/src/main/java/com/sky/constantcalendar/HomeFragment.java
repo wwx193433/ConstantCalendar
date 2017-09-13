@@ -13,6 +13,7 @@ import com.sky.model.calendar.CalendarDrawerMenu;
 import com.sky.model.calendar.CalendarHeadSelector;
 import com.sky.model.calendar.CalendarPagerAdapter;
 import com.sky.model.calendar.CalendarViewPager;
+import com.sky.model.login.LoginManager;
 import com.sky.model.menu.almanac.AlmanacManager;
 import com.sky.model.menu.clock.ClockManager;
 
@@ -27,6 +28,10 @@ public class HomeFragment extends Fragment {
         Activity activity = getActivity();
 
         initViews(view);
+
+        LoginManager loginManager = new LoginManager(activity);
+        loginManager.setView(view);
+        loginManager.init();
 
         //头部日期选择框
         CalendarHeadSelector calendarSelector = new CalendarHeadSelector(activity);
@@ -70,7 +75,6 @@ public class HomeFragment extends Fragment {
             if(resultCode == CalendarDrawerMenu.CLOCKRESULTCODE){
                 clockManager.update();
             }
-
         }
     }
 }

@@ -21,7 +21,7 @@
         <option name="ALLOW_USER_CONFIGURATION" value="false" />
         <option name="MANIFEST_FILE_RELATIVE_PATH" value="/src/main/AndroidManifest.xml" />
         <option name="RES_FOLDER_RELATIVE_PATH" value="/src/main/res/layouts/constant" />
-        <option name="RES_FOLDERS_RELATIVE_PATH" value="file://$MODULE_DIR$/src/main/res/drawables/xml;file://$MODULE_DIR$/src/main/res/drawables;file://$MODULE_DIR$/src/main/res/drawables/images;file://$MODULE_DIR$/src/main/res/layouts/clock;file://$MODULE_DIR$/src/main/res/layouts/constant;file://$MODULE_DIR$/src/main/res/layouts/calendar;file://$MODULE_DIR$/src/main/res;file://$MODULE_DIR$/src/main/res/layouts;file://$MODULE_DIR$/src/main/res/layouts/almanac" />
+        <option name="RES_FOLDERS_RELATIVE_PATH" value="file://$MODULE_DIR$/src/main/res/drawables/xml;file://$MODULE_DIR$/src/main/res/drawables;file://$MODULE_DIR$/src/main/res/drawables/images;file://$MODULE_DIR$/src/main/res/layouts/clock;file://$MODULE_DIR$/src/main/res/layouts/constant;file://$MODULE_DIR$/src/main/res/layouts/login;file://$MODULE_DIR$/src/main/res/layouts/calendar;file://$MODULE_DIR$/src/main/res;file://$MODULE_DIR$/src/main/res/layouts;file://$MODULE_DIR$/src/main/res/layouts/almanac" />
         <option name="ASSETS_FOLDER_RELATIVE_PATH" value="/src/main/assets" />
       </configuration>
     </facet>
@@ -54,6 +54,7 @@
       <sourceFolder url="file://$MODULE_DIR$/src/main/res/layouts/calendar" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/res/layouts/clock" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/res/layouts/almanac" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/main/res/layouts/login" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/res/layouts" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/res/drawables/images" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/res/drawables/xml" type="java-resource" />

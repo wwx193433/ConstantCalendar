@@ -77,6 +77,9 @@
         <activity android:name="com.sky.model.menu.almanac.RoundActivity"
             android:screenOrientation="portrait"
             android:theme="@style/TranslucentTheme"/>
+        <activity android:name="com.sky.model.login.LoginActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/TranslucentTheme"/>
     </application>
 
 </manifest>

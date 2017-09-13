@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:opensky="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="52dp"
     android:background="@color/special"
@@ -12,35 +13,17 @@
         android:layout_alignParentLeft="true"
         android:orientation="horizontal">
 
-        <ImageView
+        <com.sky.plug.widget.IconFontTextview
+            android:id="@+id/icon_self"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:src="@drawable/raining" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="10dp"
-            android:gravity="center_vertical"
-            android:orientation="vertical"
-            android:padding="2dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="西安"
-                android:textColor="#fefefe"
-                android:textSize="14sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="21-31℃"
-                android:textColor="#fefefe"
-                android:textSize="14sp" />
-        </LinearLayout>
+            android:textSize="12sp"
+            opensky:iconSize="22sp"
+            opensky:iconTop="@string/icon_self"
+            android:textColor="@color/white"
+            android:lineSpacingExtra="3dp"
+            android:gravity="center"
+            android:text="未登录" />
     </LinearLayout>
 
     <LinearLayout
