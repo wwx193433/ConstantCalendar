@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:opensky="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp">
+
+            <TextView
+                android:id="@+id/wt_wendu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:fontFamily="sans-serif-thin"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:text="29"
+                android:textColor="@color/white"
+                android:textSize="100dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_toRightOf="@+id/wt_wendu"
+                android:text="°"
+                android:textColor="@color/white"
+                android:textSize="50dp" />
+
+            <TextView
+                android:id="@+id/wt_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/wt_wendu"
+                android:paddingBottom="20dp"
+                android:text="雷阵雨"
+                android:textColor="@color/white"
+                android:textSize="16dp" />
+
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/wt_type_icon"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerInside"
+            android:src="@drawable/w_qing_day" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <com.sky.plug.widget.IconFontTextview
+            android:id="@+id/wt_wendu_range"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            opensky:iconLeft="@string/icon_wendu" />
+
+        <com.sky.plug.widget.IconFontTextview
+            android:id="@+id/wt_shidu"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:text="80%"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            opensky:iconLeft="@string/icon_shidu" />
+
+        <com.sky.plug.widget.IconFontTextview
+            android:id="@+id/wt_fengli"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:gravity="center"
+            android:text="东北风3级"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            opensky:iconLeft="@string/icon_feng" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:background="#11000000"
+        android:layout_marginBottom="10dp"
+        android:padding="2dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp">
+
+        <com.sky.plug.widget.IconFontTextview
+            android:id="@+id/wt_pm_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="@string/icon_quality"
+            android:layout_marginLeft="5dp"
+            android:textSize="22sp" />
+
+        <TextView
+            android:id="@+id/wt_pm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:textColor="@color/white"
+            android:text="20 优"
+            android:layout_marginRight="5dp"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="5dp"
+        android:background="#44000000"
+        android:orientation="vertical"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp">
+
+        <GridView
+            android:id="@+id/day_weather_grid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:horizontalSpacing="10dp"
+            android:numColumns="6"
+            android:stretchMode="columnWidth">
+
+        </GridView>
+
+        <com.sky.model.weather.WeatherChartView
+            android:id="@+id/weather_chart"
+            android:layout_width="match_parent"
+            android:layout_height="150dp" />
+
+        <GridView
+            android:id="@+id/night_weather_grid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:horizontalSpacing="10dp"
+            android:numColumns="6"
+            android:stretchMode="columnWidth">
+
+        </GridView>
+    </LinearLayout>
+</LinearLayout>

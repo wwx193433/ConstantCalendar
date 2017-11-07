@@ -6,6 +6,12 @@ import android.support.annotation.ColorInt;
 import android.util.DisplayMetrics;
 import android.view.WindowManager;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * Created by Administrator on 17-7-14.
  */
@@ -72,4 +78,69 @@ public class Utility {
         return (int) (pxValue / scale + 0.5f);
     }
 
+    //使用正则表达式判断电话号码
+    public static boolean checkMobileNumber(String tel) {
+        Pattern p = Pattern.compile("^(13[0-9]|15([0-3]|[5-9])|14[5,7,9]|17[1,3,5,6,7,8]|18[0-9])\\d{8}$");
+        Matcher m = p.matcher(tel);
+        System.out.println(m.matches() + "---");
+        return m.matches();
+    }
+
+    /**
+     * 数字过滤
+     * @param str
+     * @return
+     */
+    public static String filterNumber(String str){
+        if(null==str || str.equals("")){
+            return "";
+        }
+        Pattern pattern = Pattern.compile("[^0-9]");
+        Matcher m = pattern.matcher(str);
+        return m.replaceAll("").trim();
+    }
+
+
+    public static String getWeekDay(Date date) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        Calendar current = Calendar.getInstance();
+        String weekday = "";
+        int day = calendar.get(Calendar.DAY_OF_WEEK);
+        if(sdf.format(current.getTime()).equals(sdf.format(date))){
+            return "今天";
+        }
+        current.add(Calendar.DAY_OF_MONTH, -1);
+        if(sdf.format(current.getTime()).equals(sdf.format(date))){
+            return "昨天";
+        }
+
+        switch(day){
+            case 1:
+                weekday = "周日";
+                break;
+            case 2:
+                weekday = "周一";
+                break;
+            case 3:
+                weekday = "周二";
+                break;
+            case 4:
+                weekday = "周三";
+                break;
+            case 5:
+                weekday = "周四";
+                break;
+            case 6:
+                weekday = "周五";
+                break;
+            case 7:
+                weekday = "周六";
+                break;
+            default:
+                break;
+        }
+        return weekday;
+    }
 }

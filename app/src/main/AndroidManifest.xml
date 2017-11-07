@@ -9,17 +9,39 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"></uses-permission>
+
+
+    <!-- 这个权限用于进行网络定位-->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"></uses-permission>
+    <!-- 这个权限用于获取wifi的获取权限，wifi信息会用来进行网络定位-->
     <application
+        android:name="com.mob.MobApplication"
         android:allowBackup="true"
-        android:icon="@drawable/life"
+        android:icon="@drawable/logo"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+        <service android:name="com.baidu.location.f" android:enabled="true" android:process=":remote">
+        </service>
+
         <activity
-            android:name=".MainActivity"
-            android:screenOrientation="portrait"
+            android:name="com.qq.e.ads.ADActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
+
+        <activity
+            android:name="com.sky.model.ad.SplashActivity"
             android:label="@string/app_name"
+            android:screenOrientation="portrait"
             android:theme="@style/TranslucentTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -57,29 +79,72 @@
         <!-- 将闹钟页面置于锁屏界面上-->
         <activity
             android:name="com.sky.model.menu.clock.RingActivity"
-            android:screenOrientation="portrait"
             android:configChanges="orientation|keyboardHidden|keyboard|navigation"
             android:excludeFromRecents="true"
             android:label="@string/app_name"
             android:launchMode="singleTask"
+            android:screenOrientation="portrait"
             android:taskAffinity=""
             android:theme="@android:style/Theme.Wallpaper.NoTitleBar" />
 
-        <activity android:name="com.sky.model.menu.almanac.AlmanacActivity"
+        <activity
+            android:name="com.sky.model.menu.almanac.AlmanacActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/TranslucentTheme" />
+        <activity
+            android:name="com.sky.model.menu.almanac.AlmanacInfoActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/TranslucentTheme" />
+        <activity
+            android:name="com.sky.model.menu.almanac.ShichenActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/TranslucentTheme" />
+        <activity
+            android:name="com.sky.model.menu.almanac.RoundActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/TranslucentTheme" />
+        <activity
+            android:name="com.sky.model.login.LoginActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/TranslucentTheme"
+            android:windowSoftInputMode="stateHidden|stateAlwaysHidden" />
+        <activity
+            android:name="com.sky.model.weather.WeatherActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.sky.model.weather.CityActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/TranslucentTheme" />
+        <activity
+            android:name="com.sky.model.weather.CitySelectActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/TranslucentTheme" />
+
+        <!-- 声明SDK所需要的组件 -->
+        <service
+            android:name="com.qq.e.comm.DownloadService"
+            android:exported="false"/>
+        <!-- 请开发者注意字母的大小写，ADActivity，而不是AdActivity -->
+        <activity
+            android:name=".MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/TranslucentTheme"/>
-        <activity android:name="com.sky.model.menu.almanac.AlmanacInfoActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/TranslucentTheme"/>
-        <activity android:name="com.sky.model.menu.almanac.ShichenActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/TranslucentTheme"/>
-        <activity android:name="com.sky.model.menu.almanac.RoundActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/TranslucentTheme"/>
-        <activity android:name="com.sky.model.login.LoginActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/TranslucentTheme"/>
+
+
+        <!-- 微信公众平台 -->
+        <meta-data
+            android:name="Mob-AppKey"
+            android:value="20f4148149417" />
+        <meta-data
+            android:name="Mob-AppSecret"
+            android:value="dd6c3be036c9c9532e36b9ecf40ebe2d" />
+
+        <!-- 百度地图-->
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="hLfLr9EkXaHrg3biEIcGGdAWRUCMN76n" />
+
     </application>
+
 
 </manifest>

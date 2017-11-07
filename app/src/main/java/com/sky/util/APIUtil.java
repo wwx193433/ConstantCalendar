@@ -27,10 +27,11 @@ public class APIUtil {
         String res = new ShowApiRequest(ALMANAC_URL, APPID, SECRET)
                 .addTextPara("date", sdf.format(date))
                 .post();
-        Almanac am = new Almanac();
+        Almanac am = null;
         try {
             JSONObject obj = new JSONObject(res);
             if (obj.has("showapi_res_code") && obj.has("showapi_res_body") && obj.getString("showapi_res_code").equals("0")) {
+                am = new Almanac();
                 obj = (JSONObject) obj.get("showapi_res_body");
                 if (obj.has("gongli")) {//公历日期
                     am.setGongli(obj.getString("gongli"));

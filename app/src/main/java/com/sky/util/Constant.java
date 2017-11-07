@@ -22,6 +22,9 @@ public class Constant {
 
     public static final String LUNARNAME = "农历";
 
+    //数据库名称
+    public static final String DB_NAME = "calendar.db";
+
     //默认音乐
     public static final String DEFAULT_RING_NAME = "默认铃声";
     public static final String DEFAULT_RING_URL = "android.resource://com.sky.constantcalendar/"+ R.raw.clock;

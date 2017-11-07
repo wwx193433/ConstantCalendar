@@ -5,11 +5,14 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.sky.system.PermissionTool;
+import com.sky.util.CheckNet;
 
 /**
  * Created by Administrator on 17-7-31.
@@ -28,17 +31,31 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     private LinearLayout calendar_btn,attention_btn,find_btn,self_btn;
 
     @Override
+    protected void onStart() {
+        super.onStart();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
         initView();
 
-        // 初始化并设置当前Fragment
-        initFragment(0);
-
         //外部存储卡读写权限申请
         permissionTool.applyStoragePermission();
+        permissionTool.applyLocatePermission();
+
+        //判断网络状态
+        if(CheckNet.getNetState(this) == CheckNet.NET_NONE){
+            Log.i("NETWORK", "网络不通");
+            Toast.makeText(this, "网络不通", Toast.LENGTH_LONG).show();
+        }else{
+            Log.i("NETWORK", "the network is ok, connect net success!!!");
+        }
+
+        // 初始化并设置当前Fragment
+        initFragment(0);
 
     }
 

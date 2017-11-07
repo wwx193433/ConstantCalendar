@@ -1,0 +1,45 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.qq.e.union.demo.ContentADActivity" >
+    <LinearLayout
+        android:id="@+id/contentADContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentTop="true"
+        android:layout_centerInParent="true">
+
+        <ListView
+            android:id="@+id/list"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:divider="#b5b5b5"
+            android:dividerHeight="1dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/contentADContainer"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:weightSum="2" >
+
+        <Button
+            android:id="@+id/loadContentAD"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="加载广告" />
+
+        <Button
+            android:id="@+id/showContentAD"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="展示广告" />
+    </LinearLayout>
+
+</RelativeLayout>

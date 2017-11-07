@@ -24,9 +24,10 @@
             android:textSize="18sp" />
 
         <EditText
-            android:id="@+id/mobileNumber"
+            android:id="@+id/phone"
             android:layout_width="1dp"
             android:layout_height="wrap_content"
+            android:focusableInTouchMode="true"
             android:layout_marginLeft="5dp"
             android:layout_toRightOf="@+id/icon_user"
             android:layout_weight="1"
@@ -35,6 +36,16 @@
             android:textColorHint="@color/middleGray"
             android:inputType="number"
             android:textSize="16sp" />
+        <com.sky.plug.widget.IconFontButton
+            android:id="@+id/clearBtn"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:text="@string/icon_clear"
+            android:gravity="center"
+            android:textSize="26sp"
+            android:textColor="@color/lightGray"
+            android:background="@null"
+            />
     </LinearLayout>
 
     <View
@@ -64,15 +75,17 @@
             android:layout_width="1dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
+            android:focusableInTouchMode="true"
             android:layout_weight="1"
             android:background="@null"
+            android:inputType="number"
             android:hint="请输入验证码"
             android:textColorHint="@color/middleGray"
             android:textSize="16sp" />
 
         <Button
             android:id="@+id/verifyCodeBtn"
-            android:layout_width="100dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@null"
             android:gravity="center"
@@ -88,13 +101,14 @@
         android:padding="15dp">
 
         <Button
+            android:id="@+id/loginBtn"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:alpha="0.5"
             android:background="@drawable/login_back_corner"
             android:enabled="false"
             android:gravity="center"
             android:text="登录"
+            android:clickable="false"
             android:textColor="@color/white" />
 
     </LinearLayout>

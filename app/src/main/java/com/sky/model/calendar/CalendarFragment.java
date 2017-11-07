@@ -3,6 +3,7 @@ package com.sky.model.calendar;
 import android.app.Activity;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.ColorInt;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -15,12 +16,16 @@ import android.widget.TextView;
 import com.sky.constantcalendar.R;
 import com.sky.model.calendar.widget.DayInfo;
 import com.sky.model.calendar.widget.LunarCalendar;
+import com.sky.model.menu.almanac.Almanac;
+import com.sky.plug.widget.IconFontTextview;
+import com.sky.util.APIUtil;
 import com.sky.util.CalendarUtil;
 import com.sky.util.Constant;
 import com.sky.util.Utility;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -40,6 +45,10 @@ public class CalendarFragment extends Fragment {
     private CalendarUtil calendarUtil;
     Calendar calendar = Calendar.getInstance();
     private Calendar currentCalendar;
+    private Handler handler;
+
+    private TextView dv_solar_date, dv_week;
+    private IconFontTextview should, avoid;
 
     private Activity activity;
 
@@ -68,6 +77,12 @@ public class CalendarFragment extends Fragment {
         specialColor = resources.getColor(R.color.special);
         whiteColor = resources.getColor(R.color.white);
         this.currentCalendar = (Calendar) calendar.clone();
+
+        dv_solar_date = (TextView) activity.findViewById(R.id.dv_solar_date);
+        dv_week = (TextView) activity.findViewById(R.id.dv_week);
+
+        should = (IconFontTextview) activity.findViewById(R.id.should);
+        avoid = (IconFontTextview) activity.findViewById(R.id.avoid);
     }
 
     @Override
@@ -132,6 +147,7 @@ public class CalendarFragment extends Fragment {
                     @Override
                     public void onClick(View v) {
                         setCalendar(dayInfo.getSolarDate());
+                        setAlmanacData(dayInfo.getSolarDate());
                     }
                 });
 
@@ -158,8 +174,6 @@ public class CalendarFragment extends Fragment {
 
 
         //设置天干地支
-        TextView dv_solar_date = (TextView) activity.findViewById(R.id.dv_solar_date);
-        TextView dv_week = (TextView) activity.findViewById(R.id.dv_week);
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
         String chineseYear = calendarUtil.getChineseYear(calendar.get(Calendar.YEAR));
@@ -183,5 +197,28 @@ public class CalendarFragment extends Fragment {
                 }
             }
         }
+    }
+
+    public void setAlmanacData(final Date date) {
+        handler = new Handler();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                final Almanac am = APIUtil.getAlmanac(date);
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        if(am!=null){
+                            should.setIconText(am.getYi());
+                            avoid.setIconText(am.getJi());
+                        }else{
+                            should.setIconText("无");
+                            avoid.setIconText("无");
+                        }
+                    }
+                });
+
+            }
+        }).start();
     }
 }

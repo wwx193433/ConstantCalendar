@@ -1,0 +1,44 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+
+    <ImageView
+        android:id="@+id/app_logo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:contentDescription="红色万年历"
+        android:src="@drawable/red_calendar_logo" />
+    <TextView
+        android:id="@+id/skip_view"
+        android:layout_width="96dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:background="@drawable/background_circle"
+        android:layout_toRightOf="@+id/app_logo"
+        android:gravity="center"
+        android:text="点击跳过"
+        android:textColor="@android:color/white"
+        android:textSize="14sp"/>
+
+    <FrameLayout
+        android:id="@+id/splash_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/app_logo"/>
+
+
+    <!-- 4.预设开屏图片区域： -->
+    <!-- 开发者可以把自家App设计开屏图片摆放在这里，本示例中放置了一张静态图片。然后在onADPresent回调中再把这个图片隐藏起来。 !-->
+    <!-- 注意：直接将此图盖在广告容器的上面即可，始终不要将广告容器splash_container的设为invisible，否则将不会展示广告无法计费，返回错误码600。-->
+    <ImageView
+        android:id="@+id/splash_holder"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/app_logo"
+        android:scaleType="fitXY"
+        android:src="@drawable/splash_holder" />
+</RelativeLayout>

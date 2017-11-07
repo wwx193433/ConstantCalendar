@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ScrollView;
 
+import com.sky.model.ad.NativeAdManager;
 import com.sky.model.calendar.CalendarDrawerMenu;
 import com.sky.model.calendar.CalendarHeadSelector;
 import com.sky.model.calendar.CalendarPagerAdapter;
@@ -16,11 +17,15 @@ import com.sky.model.calendar.CalendarViewPager;
 import com.sky.model.login.LoginManager;
 import com.sky.model.menu.almanac.AlmanacManager;
 import com.sky.model.menu.clock.ClockManager;
+import com.sky.model.weather.WeatherManager;
 
 public class HomeFragment extends Fragment {
 
     private ScrollView scrollView;
     private ClockManager clockManager;
+    private WeatherManager weatherManager;
+
+    private ViewGroup native_ad_container;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -29,6 +34,7 @@ public class HomeFragment extends Fragment {
 
         initViews(view);
 
+        //登录
         LoginManager loginManager = new LoginManager(activity);
         loginManager.setView(view);
         loginManager.init();
@@ -50,6 +56,11 @@ public class HomeFragment extends Fragment {
         almanacManager.setView(view);
         almanacManager.init();
 
+        //天气
+        weatherManager = new WeatherManager(activity);
+        weatherManager.setView(view);
+        weatherManager.init();
+
         //右部滑出菜单控制
         CalendarDrawerMenu calendarDrawerMenu = new CalendarDrawerMenu(this, activity);
         calendarDrawerMenu.setView(view);
@@ -59,12 +70,26 @@ public class HomeFragment extends Fragment {
         clockManager = new ClockManager(getActivity());
         clockManager.setView(view);
         clockManager.showGetupData();
+
+        NativeAdManager nativeAdManager = new NativeAdManager(getContext(), native_ad_container);
+        nativeAdManager.loadNativeAD();
+
         return view;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if(null!=weatherManager){
+            weatherManager.unregisterBroadCastReceiver();
+        }
     }
 
     private void initViews(View view) {
         scrollView = (ScrollView) view.findViewById(R.id.homeScroller);
         scrollView.smoothScrollTo(0, 0);
+
+        native_ad_container = (ViewGroup) view.findViewById(R.id.native_ad_container);
     }
 
     @Override

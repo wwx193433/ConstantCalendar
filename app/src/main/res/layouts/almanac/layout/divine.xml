@@ -4,24 +4,20 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/shadow_panel"
-    android:layout_marginLeft="1dp"
-    android:layout_marginRight="1dp"
-    android:layout_marginTop="5dp"
+    android:background="@drawable/corner_panel"
+    android:layout_marginTop="6dp"
     android:id="@+id/almanac_layout"
     >
 
     <LinearLayout
         android:orientation="horizontal"
-        android:padding="5dp"
         android:layout_width="wrap_content"
         android:layout_height="match_parent">
-        <TextView
+        <com.sky.plug.widget.FangzhengFontTextView
             android:id="@+id/dv_solar_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="25sp"
-            android:layout_marginLeft="5dp"
             android:textColor="@color/special"
             android:typeface="serif"
             android:text="农历闰六月廿六"
@@ -38,12 +34,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:orientation="vertical"
-
-        android:paddingTop="10dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:paddingBottom="20dp"
         >
         <com.sky.plug.widget.IconFontTextview
             android:id="@+id/should"
@@ -56,7 +48,7 @@
             android:gravity="left"
             android:ellipsize="end"
             android:singleLine="true"
-            android:text="嫁娶 纳彩 订盟 祭祀 开光 出行 理发 动土 安床 放水 开渠 栽种 进口" />
+            android:text="无" />
         <com.sky.plug.widget.IconFontTextview
             android:id="@+id/avoid"
             android:layout_width="match_parent"
@@ -69,7 +61,7 @@
             android:gravity="left"
             android:ellipsize="end"
             android:singleLine="true"
-            android:text="入宅 上梁 入殓 盖屋 探病 做灶 安门 安葬 纳畜 伐木 探病 做灶" />
+            android:text="无" />
 
 
     </LinearLayout>

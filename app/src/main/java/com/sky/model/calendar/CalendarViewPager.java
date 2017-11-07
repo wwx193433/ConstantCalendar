@@ -1,13 +1,21 @@
 package com.sky.model.calendar;
 
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import com.sky.constantcalendar.R;
+import com.sky.model.menu.almanac.Almanac;
+import com.sky.plug.widget.IconFontTextview;
+import com.sky.util.APIUtil;
 import com.sky.util.CalendarUtil;
 import com.sky.util.Constant;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -21,10 +29,13 @@ public class CalendarViewPager {
     SimpleDateFormat ymdformat = new SimpleDateFormat("yyyy.MM.dd");
     private CalendarUtil calendarUtil;
     private TextView solar_text, lunar_text, dv_solar_date, dv_week;
+    private IconFontTextview should, avoid;
     private PagerAdapter pagerAdapter;
 
     private View view;
     private ViewPager viewPager;
+
+    private AlmanacHandler almanacHandler;
 
     public void setPagerAdapter(PagerAdapter pagerAdapter) {
         this.pagerAdapter = pagerAdapter;
@@ -42,6 +53,18 @@ public class CalendarViewPager {
         setPageListener(viewPager);
     }
 
+    class AlmanacHandler extends Handler{
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            Bundle bundle = msg.getData();
+            String yi = bundle.getString("yi");
+            String ji = bundle.getString("ji");
+            should.setIconText(yi);
+            avoid.setIconText(ji);
+        }
+    }
+
     private void initView() {
         //日历滑动页
         calendarUtil = new CalendarUtil();
@@ -50,6 +73,9 @@ public class CalendarViewPager {
         lunar_text = (TextView) view.findViewById(R.id.lunar_text);
         dv_solar_date = (TextView) view.findViewById(R.id.dv_solar_date);
         dv_week = (TextView) view.findViewById(R.id.dv_week);
+        should = (IconFontTextview) view.findViewById(R.id.should);
+        avoid = (IconFontTextview) view.findViewById(R.id.avoid);
+        almanacHandler = new AlmanacHandler();
     }
 
     //日历滑动监听
@@ -92,12 +118,36 @@ public class CalendarViewPager {
                 lunar_text.setText(lunarDate + " " + week);
                 dv_solar_date.setText(chineseYear + lunarDate);
                 dv_week.setText(week);
+
+                getAlamanacData(current.getTime());
             }
 
             @Override
             public void onPageScrollStateChanged(int state) {
             }
         });
+    }
+
+    /**
+     * 获取黄历数据
+     * @param date
+     */
+    private void getAlamanacData(final Date date) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Almanac am = APIUtil.getAlmanac(date);
+                if(am==null){
+                    return;
+                }
+                Message msg = Message.obtain();
+                Bundle bundle = new Bundle();
+                bundle.putString("yi", am.getYi());
+                bundle.putString("ji", am.getJi());
+                msg.setData(bundle);
+                almanacHandler.sendMessage(msg);
+            }
+        }).start();
     }
 
 }

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@drawable/back"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <com.sky.plug.widget.IconFontButton
+            android:id="@+id/backBtn"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:background="@null"
+            android:gravity="center"
+            android:text="@string/icon_back"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="城市管理"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:orientation="horizontal"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            >
+            <com.sky.plug.widget.IconFontButton
+                android:id="@+id/icon_add"
+                android:layout_width="30dp"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:gravity="center"
+                android:text="@string/icon_add"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+            <com.sky.plug.widget.IconFontButton
+                android:id="@+id/icon_edit"
+                android:layout_width="30dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:background="@null"
+                android:gravity="center"
+                android:text="@string/icon_edit"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+            <com.sky.plug.widget.IconFontButton
+                android:id="@+id/icon_confirm"
+                android:layout_width="30dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:background="@null"
+                android:gravity="center"
+                android:text="@string/icon_confirm"
+                android:textColor="@color/white"
+                android:visibility="gone"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/cityListView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="#00000000"
+        android:dividerHeight="10dp"
+        android:background="#44000000"
+        >
+
+    </ListView>
+</LinearLayout>

@@ -61,4 +61,33 @@ public class PermissionTool {
                 .create()
                 .show();
     }
+
+    @TargetApi(Build.VERSION_CODES.M)
+    public void applyLocatePermission(){
+        if (Integer.parseInt(Build.VERSION.SDK) >= 23) {
+            int hasWriteExternalStoragePermission = ContextCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_FINE_LOCATION);
+            if (hasWriteExternalStoragePermission != PackageManager.PERMISSION_GRANTED) {
+                if (!activity.shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_FINE_LOCATION)) {
+                    showMessageOKCancel("系统需要GPS和网络权限，请允许",
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    requestLocatePermission();//确定后申请权限。
+                                }
+                            });
+                    return;
+                }
+                requestStoragePermission();//没有权限的话，申请。
+            }
+        }
+    }
+
+    private void requestLocatePermission() {
+        if (ContextCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+            //申请 WRITE_CONTACTS 权限
+            ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                    1);
+        }
+    }
 }

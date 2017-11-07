@@ -14,6 +14,7 @@
         android:background="@color/special">
 
         <com.sky.plug.widget.IconFontTextview
+            android:id="@+id/iconBackBtn"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_alignParentLeft="true"
@@ -42,6 +43,7 @@
             android:paddingRight="10dp"
             android:text="@string/icon_share"
             android:textColor="@color/white"
+            android:visibility="gone"
             android:textSize="22sp" />
     </RelativeLayout>
 

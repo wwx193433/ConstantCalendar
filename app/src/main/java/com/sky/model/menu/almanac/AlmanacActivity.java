@@ -11,14 +11,18 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.sky.constantcalendar.R;
+import com.sky.model.calendar.widget.DatePopupWindow;
 import com.sky.model.calendar.widget.DayInfo;
 import com.sky.model.calendar.widget.LunarCalendar;
 import com.sky.plug.widget.FangzhengFontTextView;
@@ -43,6 +47,9 @@ public class AlmanacActivity extends Activity implements SensorEventListener, Vi
     private Calendar currentDate;
 
     private int defaultColor, specialColor;
+
+    private LinearLayout emptyLayout;
+    private ScrollView homeScroller;
 
     private FrameLayout round_frame;
 
@@ -106,8 +113,8 @@ public class AlmanacActivity extends Activity implements SensorEventListener, Vi
     }
 
     private void setClickEvent() {
-
         icon_back.setOnClickListener(this);
+        am_solarDate.setOnClickListener(this);
         am_lunar_yestoday.setOnClickListener(this);
         am_lunar_tomorrow.setOnClickListener(this);
         ll_yj.setOnClickListener(this);
@@ -144,6 +151,10 @@ public class AlmanacActivity extends Activity implements SensorEventListener, Vi
     public void initViews() {
         lunarCalendar = new LunarCalendar();
         calendarUtil = new CalendarUtil();
+
+        emptyLayout = (LinearLayout) this.findViewById(R.id.empty_layout);
+        homeScroller = (ScrollView) this.findViewById(R.id.homeScroller);
+
         round_frame = (FrameLayout) this.findViewById(R.id.round_frame);
         roundImage = (ImageView) this.findViewById(R.id.roundImage);
         round_frame.setKeepScreenOn(true);//屏幕高亮
@@ -218,10 +229,22 @@ public class AlmanacActivity extends Activity implements SensorEventListener, Vi
         //设置农历日期
         String lunarDateString = calendarUtil.getLunarDate(dayInfo.getSolarDate());
         am_lunarDate.setText(lunarDateString);
+        homeScroller.setVisibility(View.VISIBLE);
+        emptyLayout.setVisibility(View.GONE);
 
         new Thread() {
             public void run() {
                 am = APIUtil.getAlmanac(date);
+                if(am == null){
+                    myHandler.post(new Thread() {
+                        public void run() {
+                            emptyLayout.setVisibility(View.VISIBLE);
+                            homeScroller.setVisibility(View.GONE);
+                        }
+                    });
+                    return;
+                }
+
                 myHandler.post(new Thread() {
                     public void run() {
                         //设置干支
@@ -328,6 +351,38 @@ public class AlmanacActivity extends Activity implements SensorEventListener, Vi
                 lpIntent.putExtra("xi", xi);
                 startActivity(lpIntent);
                 break;
+            case R.id.am_solarDate:
+                // TODO Auto-generated method stub
+                String solarText = am_solarDate.getText().toString();
+                Date solarDate = new Date();
+                try {
+                    solarDate = sdf.parse(solarText);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                DatePopupWindow pw = new DatePopupWindow(this, solarDate);
+
+                //出现在布局底端
+                View view = getLayoutInflater().inflate(R.layout.almanac, null);
+                pw.showAsDropDown(view);
+                backgroundAlpha(0.4f);
+                pw.setOnDismissListener(new PopupWindow.OnDismissListener() {
+                    @Override
+                    public void onDismiss() {
+                        backgroundAlpha(1f);
+                    }
+                });
+
+                pw.onSelectedDate(new DatePopupWindow.DateSelectInterface() {
+                    @Override
+                    public void onDateSelectedCallBack(Date date) {
+                        Calendar calendar = Calendar.getInstance();
+                        calendar.setTime(date);
+                        currentDate = calendar;
+                        dispatchAndSetAlmanacData();
+                    }
+                });
+                break;
             default:
                 break;
         }
@@ -398,5 +453,12 @@ public class AlmanacActivity extends Activity implements SensorEventListener, Vi
                 break;
         }
         return index;
+    }
+
+    //设置页面不透明度
+    private void backgroundAlpha(float f) {
+        WindowManager.LayoutParams lp = this.getWindow().getAttributes();
+        lp.alpha = f;
+        this.getWindow().setAttributes(lp);
     }
 }

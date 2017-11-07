@@ -92,6 +92,18 @@ public class IconFontTextview extends TextView {
         setTypeface(iconfont);
     }
 
+    public void setColor(int color){
+        SpannableStringBuilder builder = new SpannableStringBuilder(content);
+        builder.setSpan(new AbsoluteSizeSpan((int) iconSize), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        this.setText(builder);
+        this.setTextColor(color);
+    }
+
+    public void setText(String content){
+        SpannableStringBuilder builder = new SpannableStringBuilder(content);
+        this.setText(builder);
+    }
+
     public void setIconText(String text) {
         switch(num){
             case 0:// 上
@@ -124,8 +136,10 @@ public class IconFontTextview extends TextView {
         }
 
         SpannableStringBuilder builder = new SpannableStringBuilder(content);
-        builder.setSpan(new AbsoluteSizeSpan((int) iconSize), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        builder.setSpan(new ForegroundColorSpan(iconColor), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        if(end>start){
+            builder.setSpan(new AbsoluteSizeSpan((int) iconSize), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            builder.setSpan(new ForegroundColorSpan(iconColor), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        }
         this.setText(builder);
     }
 

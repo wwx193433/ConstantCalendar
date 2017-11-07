@@ -4,32 +4,53 @@
     android:id="@+id/drawerCalendar"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context="com.study.paramsend.MainActivity">
 
     <ScrollView
         android:id="@+id/homeScroller"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#f6f6f6"
-        android:scrollbars="none"
-        >
+        android:background="#ccefefef"
+        android:scrollbars="none">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <!-- 日期pager-->
             <include layout="@layout/calendar_frame" />
-
-            <include layout="@layout/divine" />
-
-            <include layout="@layout/clock_list" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:background="@color/white"
-                ></LinearLayout>
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:paddingBottom="10dp"
+                >
+
+                <!-- 黄历-->
+                <include layout="@layout/divine" />
+
+                <!-- 天气-->
+                <include layout="@layout/weather_report" />
+
+                <!-- 闹钟-->
+                <include layout="@layout/clock_list" />
+
+                <!-- 广告-->
+                <FrameLayout
+                    android:id="@+id/native_ad_container"
+                    android:background="@color/white"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    />
+
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
     <!--右边侧滑-->

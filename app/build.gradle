@@ -1,8 +1,15 @@
 apply plugin: 'com.android.application'
 android {
+    signingConfigs {
+        constantcalendar {
+            keyAlias 'calendar'
+            keyPassword '123456'
+            storeFile file('E:/Android/keystore/calendar.jks')
+            storePassword '123456'
+        }
+    }
     compileSdkVersion 23
     buildToolsVersion "26.0.0"
-
     defaultConfig {
         applicationId "com.sky.constantcalendar"
         minSdkVersion 17
@@ -16,7 +23,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
     sourceSets {
         main {
             res.srcDirs =
@@ -26,13 +32,21 @@ android {
                             'src/main/res/layouts/clock',
                             'src/main/res/layouts/almanac',
                             'src/main/res/layouts/login',
+                            'src/main/res/layouts/weather',
+                            'src/main/res/layouts/ad',
                             'src/main/res/layouts',
                             'src/main/res/drawables/images',
                             'src/main/res/drawables/xml',
                             'src/main/res/drawables',
                             'src/main/res'
                     ]
+            jniLibs.srcDirs = ['libs']
         }
+    }
+}
+repositories{
+    flatDir{
+        dirs 'libs' //就是你放aar的目录地址
     }
 }
 dependencies {
@@ -43,4 +57,7 @@ dependencies {
     compile 'com.baoyz.swipemenulistview:library:1.3.0'
     compile 'com.skyfishjy.ripplebackground:library:1.0.1'
     compile files('libs/showapi_sdk.jar')
+    compile name: 'SMSSDK-3.0.0', ext: 'aar'
+    compile files('libs/BaiduLBS_Android.jar')
+    compile files('libs/GDTUnionSDK.4.12.553.min.jar')
 }
